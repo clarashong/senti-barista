@@ -239,31 +239,166 @@ function Level({ levelNumber = 1 }) {
                         </div>
                     </div>
                 );
-                                                    
+                                                     
             case 4:
                 return (
                     <div className="results-page">
-                        <h2>Drink Results</h2>
-                        <div className="results-content">
-                            <h3>Final Score: {score || '90'}%</h3>
-                            <div className="drink-summary">
-                                <h4>Your Drink Contains:</h4>
-                                <ul>
-                                    {selectedIngredients.map((ingredient, index) => (
-                                        <li key={index}>{ingredient}</li>
+                        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>Drink Results</h2>
+                        
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            gap: '40px'
+                        }}>
+                            {/* Left section - Image and Ingredients */}
+                            <div style={{
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '20px',
+                                width: '300px' // Set consistent width for the left section
+                            }}>
+                                {/* Drink image placeholder */}
+                                <div style={{
+                                    width: '300px',
+                                    height: '300px',
+                                    backgroundColor: '#f0f0f0',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '8px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <p>Drink Preview</p>
+                                </div>
+            
+                                {/* Ingredients list */}
+                                <div style={{
+                                    width: '300px', // Match image width exactly
+                                    boxSizing: 'border-box', // Include padding in width calculation
+                                    padding: '20px',
+                                    backgroundColor: '#f8f8f8',
+                                    borderRadius: '8px'
+                                }}>
+                                    <h4 style={{ marginBottom: '10px' }}>Ingredients:</h4>
+                                    <ul style={{
+                                        listStyle: 'none',
+                                        padding: 0,
+                                        margin: 0
+                                    }}>
+                                        {selectedIngredients.map((ingredient, index) => (
+                                            <li key={index} style={{
+                                                padding: '8px 0',
+                                                borderBottom: index === selectedIngredients.length - 1 ? 'none' : '1px solid #eee'
+                                            }}>
+                                                {ingredient}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+            
+                            {/* Right section - Report Card */}
+                            <div style={{
+                                flex: 1,
+                                backgroundColor: '#fff',
+                                padding: '30px',
+                                borderRadius: '12px',
+                                boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center'
+                            }}>
+                                <h3 style={{ marginBottom: '30px' }}>Final Grade</h3>
+                                
+                                {/* Overall grade circle */}
+                                <div style={{
+                                    width: '100px',
+                                    height: '100px',
+                                    borderRadius: '50%',
+                                    backgroundColor: '#4CAF50',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: 'white',
+                                    fontSize: '24px',
+                                    fontWeight: 'bold',
+                                    marginBottom: '30px'
+                                }}>
+                                    {score || '90'}%
+                                </div>
+
+                                {/* Category grades */}
+                                <div style={{
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '15px'
+                                }}>
+                                    {[
+                                        { category: 'Creativity', score: 92 },
+                                        { category: 'Theme', score: 88 },
+                                        { category: 'Taste', score: 95 }
+                                    ].map((item, index) => (
+                                        <div key={index} style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            padding: '10px 15px',
+                                            backgroundColor: '#f8f8f8',
+                                            borderRadius: '8px'
+                                        }}>
+                                            <span style={{ 
+                                                fontSize: '16px',
+                                                color: '#333'
+                                            }}>
+                                                {item.category}
+                                            </span>
+                                            <div style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px'
+                                            }}>
+                                                <div style={{
+                                                    width: '100px',
+                                                    height: '8px',
+                                                    backgroundColor: '#e0e0e0',
+                                                    borderRadius: '4px',
+                                                    overflow: 'hidden'
+                                                }}>
+                                                    <div style={{
+                                                        width: `${item.score}%`,
+                                                        height: '100%',
+                                                        backgroundColor: '#4CAF50',
+                                                        borderRadius: '4px'
+                                                    }} />
+                                                </div>
+                                                <span style={{
+                                                    fontSize: '16px',
+                                                    fontWeight: 'bold',
+                                                    color: '#4CAF50',
+                                                    minWidth: '45px'
+                                                }}>
+                                                    {item.score}%
+                                                </span>
+                                            </div>
+                                        </div>
                                     ))}
-                                </ul>
-                                <h4>Decorations:</h4>
-                                <ul>
-                                    {decorations.map((decoration, index) => (
-                                        <li key={index}>{decoration}</li>
-                                    ))}
-                                </ul>
+                                </div>
+
+                                <p style={{
+                                    fontSize: '18px',
+                                    color: '#666',
+                                    textAlign: 'center',
+                                    marginTop: '30px'
+                                }}>
+                                    Excellent work on your drink creation!
+                                </p>
                             </div>
                         </div>
                     </div>
                 );
-
+            
             default:
                 return null;
         }
