@@ -4,37 +4,33 @@ export const customers = [
         name: "Sarah",
         mood: "cheerful",
         personalityType: "friendly",
-        difficultyLevel: 1,
         order: "I need something that tastes like sunshine!",
-        expectedIngredients: ["Orange Juice", "Mango", "Passion Fruit"],
-        likes: ["Orange Juice", "Mango", "Sweet flavors"],
-        dislikes: ["Coffee", "Bitter tastes"],
+        taste: {sweetness: 80, saltiness: 0, sourness: 20, bitterness: 0, umami: 0},
+        likes: ["passion fruit"],
+        dislikes: ["coffee"],
+        theme: ["orange juice", "mango", "honey", "pineapple"],
+        offTheme: ["matcha"],
+        decoration: [],
         feedback: {
             positive: ["This is exactly what I wanted!", "So refreshing!"],
             negative: ["This is too bitter", "Not sweet enough"]
         },
-        attributes: {
-            favoriteColor: "yellow",
-            temperaturePreference: "cold"
-        }
     },
     {
         id: 2,
         name: "Mike",
         mood: "stressed",
         personalityType: "busy",
-        difficultyLevel: 2,
         order: "I need something strong to keep me awake!",
-        expectedIngredients: ["Espresso", "Caramel"],
-        likes: ["Coffee", "Strong flavors"],
-        dislikes: ["Weak coffee", "Too much sugar"],
+        taste: {sweetness: 10, saltiness: 30, sourness: 0, bitterness: 40, umami: 20},
+        likes: ["espresso"],
+        dislikes: ["strawberry"],
+        theme: ["coffee", "espresso", "tea"],
+        offTheme: ["lavender"],
+        decoration: [],
         feedback: {
             positive: ["Perfect strength!", "Just what I needed"],
             negative: ["Too weak", "Not enough coffee"]
         },
-        attributes: {
-            favoriteColor: "brown",
-            temperaturePreference: "hot"
-        }
     }
 ];

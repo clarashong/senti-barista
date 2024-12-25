@@ -5,16 +5,15 @@ function Level({ levelNumber = 1 }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [score, setScore] = useState(null);
 
-    const { 
+    const {
         currentLevel,
-        ingredients,
+        setCurrentLevel,
         selectedIngredients,
         setSelectedIngredients,
         decorations,
         setDecorations,
         getCurrentCustomer,
-        loading,
-        error
+        calculateScore
     } = useGame();
 
     const customer = getCurrentCustomer(); 
@@ -41,10 +40,17 @@ function Level({ levelNumber = 1 }) {
         }
     };
 
+    const checkAnswers = () => {
+        setScore(calculateScore); 
+    }
+
     // Navigation functions
     const nextPage = () => {
         if (currentPage < 4) {
             setCurrentPage(currentPage + 1);
+        }
+        if (currentPage === 3) {
+            checkAnswers();
         }
     };
 
@@ -325,7 +331,7 @@ function Level({ levelNumber = 1 }) {
                                     fontWeight: 'bold',
                                     marginBottom: '30px'
                                 }}>
-                                    {score || '90'}%
+                                    {score.total || '90'}%
                                 </div>
 
                                 {/* Category grades */}
@@ -336,9 +342,9 @@ function Level({ levelNumber = 1 }) {
                                     gap: '15px'
                                 }}>
                                     {[
-                                        { category: 'Creativity', score: 92 },
-                                        { category: 'Theme', score: 88 },
-                                        { category: 'Taste', score: 95 }
+                                        { category: 'Creativity', score: score.creativity },
+                                        { category: 'Theme', score: score.theme },
+                                        { category: 'Taste', score: score.taste }
                                     ].map((item, index) => (
                                         <div key={index} style={{
                                             display: 'flex',
@@ -456,7 +462,7 @@ function Level({ levelNumber = 1 }) {
                 }}>
                     <button
                         onClick={previousPage}
-                        disabled={currentPage === 1}
+                        disabled={currentPage === 1 || currentPage === 4}
                         style={{
                             padding: '10px 20px',
                             cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
