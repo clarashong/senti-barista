@@ -1,0 +1,187 @@
+import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+
+const client = new BedrockRuntimeClient({ 
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+});
+
+const customerSchema = {
+    type: "function",
+    function: {
+        name: "generateCustomer",
+        description: "Generate a unique customer profile for a coffee shop game. The taste preferences must add up to exactly 100.",
+        parameters: {
+            type: "object",
+            properties: {
+                name: {
+                    type: "string",
+                    description: "Customer's full name"
+                },
+                order: {
+                    type: "string",
+                    description: "The customer's verbal drink order or request"
+                },
+                taste: {
+                    type: "object",
+                    description: "Customer's taste preferences. All values must be integers and sum to exactly 100",
+                    properties: {
+                        sweetness: {
+                            type: "integer",
+                            minimum: 0,
+                            maximum: 100,
+                            description: "Preference for sweet flavors (0-100)"
+                        },
+                        bitterness: {
+                            type: "integer",
+                            minimum: 0,
+                            maximum: 100,
+                            description: "Tolerance for bitter flavors (0-100)"
+                        },
+                        sourness: {
+                            type: "integer",
+                            minimum: 0,
+                            maximum: 100,
+                            description: "Preference for sour/acidic flavors (0-100)"
+                        },
+                        saltiness: {
+                            type: "integer",
+                            minimum: 0,
+                            maximum: 100,
+                            description: "Preference for salty flavors (0-100)"
+                        },
+                        umami: {
+                            type: "integer",
+                            minimum: 0,
+                            maximum: 100,
+                            description: "Preference for savory flavors (0-100)"
+                        }
+                    },
+                    required: ["sweetness", "bitterness", "sourness", "saltiness", "umami"]
+                },
+                likes: {
+                    type: "array",
+                    items: {
+                        type: "string"
+                    },
+                    description: "List of ingredients or flavors the customer enjoys",
+                    minItems: 2,
+                    maxItems: 5
+                },
+                dislikes: {
+                    type: "array",
+                    items: {
+                        type: "string"
+                    },
+                    description: "List of ingredients or flavors the customer dislikes",
+                    minItems: 1,
+                    maxItems: 3
+                },
+                theme: {
+                    type: "array",
+                    items: {
+                        type: "string"
+                    },
+                    description: "Ingredients that match the customer's preferences",
+                    minItems: 2,
+                    maxItems: 4
+                },
+                offTheme: {
+                    type: "array",
+                    items: {
+                        type: "string"
+                    },
+                    description: "Ingredients that don't match the customer's preferences",
+                    minItems: 1,
+                    maxItems: 3
+                },
+                feedback: {
+                    type: "object",
+                    properties: {
+                        positive: {
+                            type: "array",
+                            items: {
+                                type: "string"
+                            },
+                            description: "Positive feedback phrases the customer might say",
+                            minItems: 2,
+                            maxItems: 4
+                        },
+                        negative: {
+                            type: "array",
+                            items: {
+                                type: "string"
+                            },
+                            description: "Negative feedback phrases the customer might say",
+                            minItems: 2,
+                            maxItems: 4
+                        }
+                    },
+                    required: ["positive", "negative"]
+                }
+            },
+            required: ["name", "order", "taste", "likes", "dislikes", "theme", "offTheme", "feedback"]
+        }
+    }
+};
+
+async function generateCustomerProfile() {
+    const messages = [
+        {
+            role: "user",
+            content: "Generate a new unique customer profile for my coffee shop game. Make sure the customer has interesting preferences and a distinct personality."
+        }
+    ];
+
+    const input = {
+        modelId: "anthropic.claude-v3-sonnet",
+        contentType: "application/json",
+        accept: "application/json",
+        body: JSON.stringify({
+            anthropic_version: "bedrock-2023-05-31",
+            messages: messages,
+            max_tokens: 1000,
+            temperature: 0.7,
+            tools: [{ 
+                type: "function",
+                function: customerSchema
+            }]
+        })
+    };
+
+    try {
+        const command = new InvokeModelCommand(input);
+        const response = await client.send(command);
+        const responseData = JSON.parse(new TextDecoder().decode(response.body));
+        
+        // Extract the generated customer data from the tool calls
+        if (responseData.tool_calls && responseData.tool_calls.length > 0) {
+            const customerData = JSON.parse(responseData.tool_calls[0].parameters);
+            return customerData;
+        }
+        
+        return null;
+    } catch (error) {
+        console.error("Error generating customer profile:", error);
+        throw error;
+    }
+}
+
+// Example usage
+async function generateMultipleCustomers(count) {
+    const customers = [];
+    for (let i = 0; i < count; i++) {
+        const customer = await generateCustomerProfile();
+        if (customer) {
+            customers.push(customer);
+        }
+    }
+    return customers;
+}
+
+// Generate 3 customers
+generateMultipleCustomers(3)
+    .then(customers => console.log(JSON.stringify(customers, null, 2)))
+    .catch(error => console.error(error));
