@@ -1,308 +1,187 @@
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 
-const client = new BedrockRuntimeClient({ 
+// env var validation 
+
+const requiredEnvVars = [
+    'REACT_APP_AWS_REGION',
+    'REACT_APP_AWS_ACCESS_KEY_ID',
+    'REACT_APP_AWS_SECRET_ACCESS_KEY'
+];
+
+const validateEnvVars = () => {
+    for (const envVar of requiredEnvVars) {
+        if (!process.env[envVar]) {
+            throw new Error(`Missing required environment variable: ${envVar}`);
+        }
+    }
+};
+
+// Call this when your application starts
+validateEnvVars();
+
+const client = new BedrockRuntimeClient({
     region: process.env.REACT_APP_AWS_REGION,
     credentials: {
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
     }
 });
 
 const customerSchema = {
-    type: "function",
     function: {
         name: "generateCustomer",
-        description: "Generate a unique customer profile for a abstract and sentiment-based drink shop game. The taste preferences must add up to exactly 100.",
+        description: "Generate a unique customer profile for a abstract and sentiment-based drink shop game",
         parameters: {
             type: "object",
             properties: {
                 name: {
                     type: "string",
-                    description: "Customer's full name"
+                    description: "The customer's full name"
                 },
-                order: {
+                age: {
+                    type: "integer",
+                    description: "The customer's age (between 18 and 80)"
+                },
+                occupation: {
                     type: "string",
-                    description: "The customer's verbal drink order or request for an easy difficulty level."
+                    description: "The customer's job or primary activity"
                 },
-                taste: {
+                personality: {
+                    type: "string",
+                    description: "Brief description of the customer's personality traits"
+                },
+                preferences: {
                     type: "object",
-                    description: "Customer's taste preferences. All values must be integers and sum to exactly 100",
                     properties: {
-                        sweetness: {
+                        sweet: {
                             type: "integer",
-                            minimum: 0,
-                            maximum: 100,
                             description: "Preference for sweet flavors (0-100)"
                         },
-                        bitterness: {
+                        bitter: {
                             type: "integer",
-                            minimum: 0,
-                            maximum: 100,
-                            description: "Tolerance for bitter flavors (0-100)"
+                            description: "Preference for bitter flavors (0-100)"
                         },
-                        sourness: {
+                        sour: {
                             type: "integer",
-                            minimum: 0,
-                            maximum: 100,
-                            description: "Preference for sour/acidic flavors (0-100)"
+                            description: "Preference for sour flavors (0-100)"
                         },
-                        saltiness: {
+                        savory: {
                             type: "integer",
-                            minimum: 0,
-                            maximum: 100,
-                            description: "Preference for salty flavors (0-100)"
-                        },
-                        umami: {
-                            type: "integer",
-                            minimum: 0,
-                            maximum: 100,
                             description: "Preference for savory flavors (0-100)"
                         }
                     },
-                    required: ["sweetness", "bitterness", "sourness", "saltiness", "umami"]
+                    required: ["sweet", "bitter", "sour", "savory"]
                 },
-                likes: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    },
-                    description: "List of ingredients or flavors the customer enjoys",
-                    minItems: 10,
-                    maxItems: 15
-                },
-                dislikes: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    },
-                    description: "List of ingredients or flavors the customer dislikes",
-                    minItems: 10,
-                    maxItems: 15
-                },
-                theme: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    },
-                    description: "Ingredients that match the customer's order",
-                    minItems: 10,
-                    maxItems: 15
-                },
-                offTheme: {
-                    type: "array",
-                    items: {
-                        type: "string"
-                    },
-                    description: "Ingredients that don't match the customer's order",
-                    minItems: 10,
-                    maxItems: 15
-                },
-                feedback: {
-                    type: "object",
-                    properties: {
-                        positive: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "Positive feedback phrases the customer might say",
-                            minItems: 2,
-                            maxItems: 4
-                        },
-                        negative: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "Negative feedback phrases the customer might say",
-                            minItems: 2,
-                            maxItems: 4
-                        }
-                    },
-                    required: ["positive", "negative"]
+                backstory: {
+                    type: "string",
+                    description: "A brief background story about the customer"
                 }
             },
-            required: ["name", "order", "taste", "likes", "dislikes", "theme", "offTheme", "feedback"]
+            required: ["name", "age", "occupation", "personality", "preferences", "backstory"]
         }
     }
 };
 
 async function generateCustomerProfile() {
-    const messages = [
-        {
-            role: "user",
-            content: "Generate a unique customer profile for a abstract and sentiment-based drink shop game. Make sure the customer has interesting preferences and a distinct personality."
-        }
-    ];
+    const prompt = `Generate a unique customer profile for a sentiment-based drink shop game. The response should be a JSON object matching this exact structure:
 
-    const input = {
-        modelId: "anthropic.claude-3-sonnet-20240229-v1:0",  // Updated model ID
-        contentType: "application/json",
-        accept: "application/json",
-        body: JSON.stringify({
-            anthropic_version: "bedrock-2024-02-29",  // Updated version
-            max_tokens: 1000,
-            temperature: 0.7,
-            messages: messages,
-            system: "You are a helpful assistant that generates customer profiles for a coffee shop game.",
-            tools: [{ 
-                type: "tool",
-                name: "generateCustomer",  // Added required name field
-                description: "Generate a unique customer profile for a abstract and sentiment-based drink shop game. The taste preferences must add up to exactly 100.",
-                input_schema: {  // Changed from "parameters" to "input_schema"
-                    type: "object",
-                    properties: {
-                        name: {
-                            type: "string",
-                            description: "Customer's full name"
-                        },
-                        order: {
-                            type: "string",
-                            description: "The customer's verbal drink order or request for an easy difficulty level."
-                        },
-                        taste: {
-                            type: "object",
-                            description: "Customer's taste preferences. All values must be integers and sum to exactly 100",
-                            properties: {
-                                sweetness: {
-                                    type: "integer",
-                                    minimum: 0,
-                                    maximum: 100,
-                                    description: "Preference for sweet flavors (0-100)"
-                                },
-                                bitterness: {
-                                    type: "integer",
-                                    minimum: 0,
-                                    maximum: 100,
-                                    description: "Tolerance for bitter flavors (0-100)"
-                                },
-                                sourness: {
-                                    type: "integer",
-                                    minimum: 0,
-                                    maximum: 100,
-                                    description: "Preference for sour/acidic flavors (0-100)"
-                                },
-                                saltiness: {
-                                    type: "integer",
-                                    minimum: 0,
-                                    maximum: 100,
-                                    description: "Preference for salty flavors (0-100)"
-                                },
-                                umami: {
-                                    type: "integer",
-                                    minimum: 0,
-                                    maximum: 100,
-                                    description: "Preference for savory flavors (0-100)"
-                                }
-                            },
-                            required: ["sweetness", "bitterness", "sourness", "saltiness", "umami"]
-                        },
-                        likes: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "List of ingredients or flavors the customer enjoys",
-                            minItems: 10,
-                            maxItems: 15
-                        },
-                        dislikes: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "List of ingredients or flavors the customer dislikes",
-                            minItems: 10,
-                            maxItems: 15
-                        },
-                        theme: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "Ingredients that match the customer's order",
-                            minItems: 10,
-                            maxItems: 15
-                        },
-                        offTheme: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            description: "Ingredients that don't match the customer's order",
-                            minItems: 10,
-                            maxItems: 15
-                        },
-                        feedback: {
-                            type: "object",
-                            properties: {
-                                positive: {
-                                    type: "array",
-                                    items: {
-                                        type: "string"
-                                    },
-                                    description: "Positive feedback phrases the customer might say",
-                                    minItems: 2,
-                                    maxItems: 4
-                                },
-                                negative: {
-                                    type: "array",
-                                    items: {
-                                        type: "string"
-                                    },
-                                    description: "Negative feedback phrases the customer might say",
-                                    minItems: 2,
-                                    maxItems: 4
-                                }
-                            },
-                            required: ["positive", "negative"]
-                        }
-                    },
-                    required: ["name", "order", "taste", "likes", "dislikes", "theme", "offTheme", "feedback"]
-                },
-                display_width_px: 500,  // Added required field
-                display_height_px: 300   // Added required field
-            }]
-        })
-    };
-    
+    {
+        name: (string),
+        order: (string describing what they want, should be a creative and sentiment based drink request - for an easy level),
+        taste: {
+            sweetness: (number 0-100),
+            saltiness: (number 0-100),
+            sourness: (number 0-100),
+            bitterness: (number 0-100),
+            umami: (number 0-100)
+        },
+        likes: (array of minimum 10 strings - ingredients they like),
+        dislikes: (array of minimum 5 strings - ingredients they dislike),
+        theme: (array of minimum 10 strings - specific food ingredients that match their order's theme),
+        offTheme: (array of minimum 5 strings - specific food ingredients that go against their order's theme),
+        decoration: (empty array for now),
+        feedback: {
+            positive: (array of 2 possible positive feedback strings - in character as this customer),
+            neutral: (array of 2 possible netural feedback strings - in character as this customer), 
+            negative: (array of 2 possible negative feedback strings - in character as this customer)
+        }
+    }
+
+    Note: The sum of all taste values (sweetness, saltiness, sourness, bitterness, umami) must equal 100.
+    Please respond with only the JSON object, no additional text.`;
 
     try {
+        const input = {
+            modelId: "anthropic.claude-3-sonnet-20240229-v1:0",
+            contentType: "application/json",
+            accept: "application/json",
+            body: JSON.stringify({
+                anthropic_version: "bedrock-2023-05-31",
+                max_tokens: 1000,
+                messages: [
+                    {
+                        role: "user",
+                        content: [
+                            {
+                                type: "text",
+                                text: prompt
+                            }
+                        ]
+                    }
+                ],
+                temperature: 0.7
+            })
+        };
+
         const command = new InvokeModelCommand(input);
         const response = await client.send(command);
+        
+        // Parse the response
         const responseData = JSON.parse(new TextDecoder().decode(response.body));
         
-        // Extract the generated customer data from the tool calls
-        if (responseData.tool_calls && responseData.tool_calls.length > 0) {
-            const customerData = JSON.parse(responseData.tool_calls[0].parameters);
-            return customerData;
+        // Extract the content from the response
+        const content = responseData.content[0].text;
+        
+        // Parse the JSON response
+        const customerProfile = JSON.parse(content);
+        
+        // Validate that taste values sum to 100
+        const tasteSum = Object.values(customerProfile.taste).reduce((a, b) => a + b, 0);
+        if (tasteSum !== 100) {
+            throw new Error("Taste values do not sum to 100");
+        }
+
+        // Validate required fields
+        if (!customerProfile.name || 
+            !customerProfile.order || 
+            !customerProfile.taste || 
+            !Array.isArray(customerProfile.likes) ||
+            !Array.isArray(customerProfile.dislikes) ||
+            !Array.isArray(customerProfile.theme) ||
+            !Array.isArray(customerProfile.offTheme) ||
+            !Array.isArray(customerProfile.decoration) ||
+            !customerProfile.feedback?.positive ||
+            !customerProfile.feedback?.negative) {
+            throw new Error("Missing required fields in customer profile");
         }
         
-        return null;
+        return customerProfile;
     } catch (error) {
-        console.error("Error details:", {
-            message: error.message,
-            name: error.name,
-            code: error.$metadata?.httpStatusCode,
-            requestId: error.$metadata?.requestId,
-            cfId: error.$metadata?.cfId,
-            body: error.response?.body
-        });
+        console.error("Error generating customer profile:", error);
         throw error;
     }
 }
 
-// Example usage
-export async function generateMultipleCustomers(count) {
+
+export async function generateMultipleCustomers(times) {
     const customers = [];
-    for (let i = 0; i < count; i++) {
-        const customer = await generateCustomerProfile();
-        if (customer) {
+    for (let i = 0; i < times; i++) {
+        try {
+            const customer = await generateCustomerProfile();
             customers.push(customer);
+        } catch (error) {
+            console.error(`Error generating customer ${i+1}:`, error);
         }
     }
     return customers;
-}
-
-
-
+}    
