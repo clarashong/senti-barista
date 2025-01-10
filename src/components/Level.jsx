@@ -493,8 +493,6 @@ function Level({ levelNumber = 1 }) {
             </div>
         </div>
     );
-
-    
 }
 
 export default Level;
