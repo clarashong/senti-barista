@@ -27,19 +27,19 @@ const client = new BedrockRuntimeClient({
     }
 });
 
-async function generateCustomerProfile() {
-    const previousCustomersContext = `Previously generated customers: ${JSON.stringify(customers)}. 
-       Please generate a customer profile that is unique and different from these.`;
+async function generateCustomerProfile(context) {
+    const previousCustomersContext = `Previously generated customers: ${JSON.stringify(customers + context)}. 
+       Please generate a unique customer profile, whose order is unique and different from these.`;
 
     const prompt = `${previousCustomersContext} 
     
-    Generate a unique customer profile, who is a kid, for an abstract and sentiment-based drink shop game. 
+    Generate a unique customer profile for an abstract and sentiment-based drink shop game. 
     The response should be a JSON object matching this exact structure:
 
     {
         name: (string - customer name),
-        age: (number 5-10),
-        order: (string describing what they want, should be a sentiment-based drink request - for easy-to-medium level),
+        age: (number 5-80),
+        order: (string describing what they want, should be a sentiment-based drink request - for a very easy level),
         personality: (string - brief personality description for the customer)
         taste: {
             sweetness: (number 0-100),
@@ -50,8 +50,8 @@ async function generateCustomerProfile() {
         },
         likes: (array of minimum 10 strings - ingredients they personally like - not based on the order),
         dislikes: (array of minimum 5 strings - ingredients they personally dislike - not based on the order),
-        theme: (array of minimum 10 strings - specific edible ingredients that match their order's theme, different from likes),
-        offTheme: (array of minimum 5 strings - specific edible ingredients that go against their order's theme, different from dislikes),
+        theme: (array of minimum 10 strings - specific edible ingredients that match their order's theme that are different from likes),
+        offTheme: (array of minimum 5 strings - specific edible ingredients that go against their order's theme that are different from dislikes),
         decoration: (empty array for now),
         feedback: {
             positive: (array of 2 possible positive feedback strings - in character as this customer),
@@ -125,13 +125,17 @@ async function generateCustomerProfile() {
     }
 }
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function generateMultipleCustomers(times) {
-    const customers = [];
+    let customers = [];
     for (let i = 0; i < times; i++) {
         try {
-            const customer = await generateCustomerProfile();
+            const customer = await generateCustomerProfile(customers);
             customers.push(customer);
+            if (i < times - 1) {
+                await delay(1000);
+            }
         } catch (error) {
             console.error(`Error generating customer ${i+1}:`, error);
         }

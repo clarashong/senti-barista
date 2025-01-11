@@ -4,7 +4,7 @@ import { GameProvider } from './context/GameContext';
 import { generateMultipleCustomers }  from './generation/customerGeneration';
 
 // Generate customers once when the app loads
-generateMultipleCustomers(1)
+generateMultipleCustomers(2)
 .then(customers => console.log(JSON.stringify(customers, null, 2)))
 .catch(error => console.error(error));
 
