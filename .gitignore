@@ -48,3 +48,6 @@ Thumbs.db
 
 # Project specific
 desc.txt
+
+# processes and scrap
+customerIngredients.js
