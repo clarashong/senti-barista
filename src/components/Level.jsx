@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGame } from '../context/GameContext';
+import './Level.css';
 
 function Level({ levelNumber = 1 }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [score, setScore] = useState(null);
-
+    
     const {
         currentLevel,
         setCurrentLevel,
@@ -60,6 +61,35 @@ function Level({ levelNumber = 1 }) {
         }
     };
 
+    const getDrinkImage = (ingredients) => {
+        const filledCount = selectedIngredients.filter(str => str.trim() !== '').length; // count filled strings
+        if (filledCount < 0 || filledCount > 4) {
+            return 'drink_0.png'
+        }
+        return 'drink_' + filledCount + '.png';
+    };
+    
+    // image transitions
+    const [currentImage, setCurrentImage] = useState(getDrinkImage(selectedIngredients));
+    const [nextImage, setNextImage] = useState(getDrinkImage(selectedIngredients));
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
+    // Add this useEffect to handle the image transitions
+    useEffect(() => {
+        const newImage = getDrinkImage(selectedIngredients);
+        if (newImage !== currentImage) {
+            setNextImage(newImage);
+            setIsTransitioning(true);
+            
+            const timer = setTimeout(() => {
+                setCurrentImage(newImage);
+                setIsTransitioning(false);
+            }, 500); // Match this duration with CSS transition
+            
+            return () => clearTimeout(timer);
+        }
+    }, [selectedIngredients]);
+    
     // Render different pages based on currentPage
     const renderPage = () => {
         switch (currentPage) {
@@ -154,7 +184,8 @@ function Level({ levelNumber = 1 }) {
                     return (
                         <div className="ingredients-page">
                             <h2 style={{ textAlign: 'center',
-                                color: '#5F422B'
+                                color: '#5F422B',
+                                marginBottom: '60px'
                              }}>Create Your Drink</h2>
                             
                             <div style={{
@@ -163,19 +194,40 @@ function Level({ levelNumber = 1 }) {
                                 gap: '40px',
                                 marginTop: '20px'
                             }}>
-                                {/* Drink image placeholder */}
+                                {/* Drink Preview */}
                                 <div style={{
                                     width: '300px',
                                     height: '300px',
-                                    backgroundColor: '#f0f0f0',
-                                    border: '1px solid #ccc',
-                                    borderRadius: '8px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
+                                    position: 'relative',  // Important for stacking images
+                                    backgroundColor: '#F5F5F5',
+                                    borderRadius: '20px'
                                 }}>
-                                    <p>Drink Preview</p>
-                                </div>
+                                    {/* Bottom (old) image */}
+                                    <img 
+                                        src={'/assets/game/drink/' + currentImage}
+                                        alt="Current Drink"
+                                        style={{
+                                            position: 'absolute',
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+                                    {/* Top (new) image */}
+                                    <img 
+                                        src={'/assets/game/drink/' + nextImage}
+                                        alt="Next Drink"
+                                        style={{
+                                            position: 'absolute',
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'contain',
+                                            opacity: isTransitioning ? 1 : 0,
+                                            transition: 'opacity 0.5s ease-in-out'
+                                        }}
+                                    />
+                                </div>  
+
 
                                 {/* Ingredients inputs */}
                                 <div className="ingredients-form" style={{
@@ -504,8 +556,8 @@ function Level({ levelNumber = 1 }) {
                         disabled={currentPage === 4}
                         style={{
                             padding: '10px 20px',
-                            cursor: currentPage === 4 ? 'not-allowed' : 'pointer',
-                            backgroundColor: currentPage === 4 ? '#e0e0e0' : '#71c39f',
+                            cursor: 'pointer',
+                            backgroundColor: currentPage === 4 ? '#408c75' : '#71c39f',
                             border: 'none',
                             borderRadius: '5px',
                             color: 'white',
