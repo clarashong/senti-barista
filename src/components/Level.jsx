@@ -70,7 +70,9 @@ function Level({ levelNumber = 1 }) {
                         {/* 1. Level heading */}
                         <h1 style={{ 
                             textAlign: 'center', 
-                            marginBottom: '10px' 
+                            marginBottom: '0px', 
+                            color: '#5F422B',
+                            fontWeight: 800
                         }}>
                             Level {levelNumber}
                         </h1>
@@ -78,7 +80,8 @@ function Level({ levelNumber = 1 }) {
                         {/* 2. Customer name's order */}
                         <h2 style={{ 
                             textAlign: 'center', 
-                            marginBottom: '30px' 
+                            marginBottom: '30px',
+                            color: '#5F422B' 
                         }}>
                             {customer.name}'s Order
                         </h2>
@@ -92,21 +95,36 @@ function Level({ levelNumber = 1 }) {
                             marginBottom: '30px' 
                         }}>
                             {/* Image placeholder */}
-                            <div style={{ 
-                                width: '200px', 
-                                height: '200px', 
-                                backgroundColor: '#f0f0f0', 
-                                border: '1px solid #ccc',
-                                borderRadius: '8px'
-                            }}>
-                                {/* Customer image will go here */}
+                            <div
+                                style={{
+                                    width: '300px',
+                                    height: '300px',
+                                    borderRadius: '50%',
+                                    backgroundColor: '#F5F5F5', // whitesmoke 
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    overflow: 'hidden' // ensures the image stays within the circular div
+                                }}
+                            >
+                                <img 
+                                    src='/assets/game/customers/timmy.png'
+                                    alt="Customer headshot"
+                                    className="customer-headshot"
+                                    style={{
+                                        width: '300px',
+                                        height: '300px',
+                                        borderRadius: '50%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
                             </div>
 
                             {/* Order speech bubble */}
                             <div style={{ 
                                 position: 'relative',
-                                backgroundColor: '#fff',
-                                border: '2px solid #ccc',
+                                backgroundColor: '#F5F5F5',
+                                border: '3px solid #936A49',
                                 borderRadius: '20px',
                                 padding: '20px',
                                 maxWidth: '300px'
@@ -121,9 +139,11 @@ function Level({ levelNumber = 1 }) {
                                     height: '0',
                                     borderTop: '10px solid transparent',
                                     borderBottom: '10px solid transparent',
-                                    borderRight: '20px solid #ccc'
+                                    borderRight: '20px solid #936A49'
                                 }}></div>
-                                <p style={{ margin: 0 }}>{customer.order}</p>
+                                <p style={{ margin: 0,
+                                    color: '#5F422B'
+                                }}>{customer.order}</p>
                             </div>
                         </div>
                     </div>
@@ -133,7 +153,9 @@ function Level({ levelNumber = 1 }) {
                 case 2:
                     return (
                         <div className="ingredients-page">
-                            <h2 style={{ textAlign: 'center' }}>Create Your Drink</h2>
+                            <h2 style={{ textAlign: 'center',
+                                color: '#5F422B'
+                             }}>Create Your Drink</h2>
                             
                             <div style={{
                                 display: 'flex',
@@ -416,7 +438,8 @@ function Level({ levelNumber = 1 }) {
         left: '50%',
         transform: 'translateX(-50%)',
         width: '800px',
-        backgroundColor: '#fff',
+        backgroundColor: '#F5F5F5',
+        borderRadius: '20px',
         padding: '20px',
         boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'
     };
@@ -450,7 +473,7 @@ function Level({ levelNumber = 1 }) {
                     <div style={{
                         width: `${(currentPage / 4) * 100}%`,
                         height: '100%',
-                        backgroundColor: '#4CAF50',
+                        backgroundColor: '#71c39f',
                         transition: 'width 0.3s ease'
                     }}/>
                 </div>
@@ -465,11 +488,12 @@ function Level({ levelNumber = 1 }) {
                         disabled={currentPage === 1 || currentPage === 4}
                         style={{
                             padding: '10px 20px',
-                            cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                            backgroundColor: currentPage === 1 ? '#e0e0e0' : '#4CAF50',
+                            cursor: currentPage === 1 || currentPage === 4 ? 'not-allowed' : 'pointer',
+                            backgroundColor: currentPage === 1 || currentPage === 4 ? '#e0e0e0' : '#71c39f',
                             border: 'none',
                             borderRadius: '5px',
-                            color: 'white'
+                            color: 'white',
+                            fontSize: '16px'
                         }}
                     >
                         Previous
@@ -481,10 +505,11 @@ function Level({ levelNumber = 1 }) {
                         style={{
                             padding: '10px 20px',
                             cursor: currentPage === 4 ? 'not-allowed' : 'pointer',
-                            backgroundColor: currentPage === 4 ? '#e0e0e0' : '#4CAF50',
+                            backgroundColor: currentPage === 4 ? '#e0e0e0' : '#71c39f',
                             border: 'none',
                             borderRadius: '5px',
-                            color: 'white'
+                            color: 'white',
+                            fontSize: '16px'
                         }}
                     >
                         {currentPage === 4 ? 'Finish' : 'Next'}

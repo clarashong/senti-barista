@@ -1,36 +1,72 @@
 export const customers = [
     {
-        id: 1,
-        name: "Sarah",
-        mood: "cheerful",
-        personalityType: "friendly",
-        order: "I need something that tastes like sunshine!",
-        taste: {sweetness: 80, saltiness: 0, sourness: 20, bitterness: 0, umami: 0},
-        likes: ["passion fruit"],
-        dislikes: ["coffee"],
-        theme: ["orange juice", "mango", "honey", "pineapple"],
-        offTheme: ["matcha"],
-        decoration: [],
-        feedback: {
-            positive: ["This is exactly what I wanted!", "So refreshing!"],
-            negative: ["This is too bitter", "Not sweet enough"]
+        "id": 1,
+        "name": "Timmy",
+        "age": 7,
+        "order": "I want a really happy and fun drink!",
+        "personality": "Energetic and playful kid with a sweet tooth.",
+        "taste": {
+          "sweetness": 80,
+          "saltiness": 5,
+          "sourness": 5,
+          "bitterness": 5,
+          "umami": 5
         },
-    },
-    {
-        id: 2,
-        name: "Mike",
-        mood: "stressed",
-        personalityType: "busy",
-        order: "I need something strong to keep me awake!",
-        taste: {sweetness: 10, saltiness: 30, sourness: 0, bitterness: 40, umami: 20},
-        likes: ["espresso"],
-        dislikes: ["strawberry"],
-        theme: ["coffee", "espresso", "tea"],
-        offTheme: ["lavender"],
-        decoration: [],
-        feedback: {
-            positive: ["Perfect strength!", "Just what I needed"],
-            negative: ["Too weak", "Not enough coffee"]
+        "likes": [
+          "chocolate",
+          "strawberries",
+          "whipped cream",
+          "sprinkles",
+          "gummy bears",
+          "marshmallows",
+          "cotton candy",
+          "caramel",
+          "fruit punch",
+          "lollipops"
+        ],
+        "dislikes": [
+          "coffee",
+          "bitter melon",
+          "olives",
+          "ginger",
+          "radish"
+        ],
+        "theme": [
+          "rainbow sour straws",
+          "gummy worms",
+          "rock candy",
+          "jelly beans",
+          "lemon drops",
+          "gumdrops",
+          "licorice laces",
+          "candy canes",
+          "gingerbread",
+          "peppermint patties"
+        ],
+        "offTheme": [
+          "matcha powder",
+          "turmeric",
+          "black pepper",
+          "wasabi",
+          "soy sauce"
+        ],
+        "decoration": [],
+        "feedback": {
+          "positive": [
+            "Yay! This is the best drink ever!",
+            "I love it! It's so yummy and fun!"
+          ],
+          "neutral": [
+            "It's okay, I guess.",
+            "Not bad, but not my favorite."
+          ],
+          "negative": [
+            "Eww, I don't like this at all!",
+            "This is gross! I want something else!"
+          ]
         },
+        "assets": {
+            "headshot": "../assets/game/customers/timmy.png"
+        }
     }
 ];
