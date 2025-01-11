@@ -1,4 +1,7 @@
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { ingredients } from "./generatedIngredients";
+import { customers } from "./generatedCustomers"; 
+
 
 // env var validation 
 const requiredEnvVars = [
@@ -26,24 +29,26 @@ const client = new BedrockRuntimeClient({
     }
 });
 
-async function generateCustomerProfile(context) {
-    const previousCustomersContext = `Previously generated drinks: '${JSON.stringify(customers + context)}'. 
+export async function generateIngredientList() {
+    const previousIngredients = `Previously generated ingredients: '${JSON.stringify(ingredients)}'. 
        Please continue the list, with different ingredients from these.`;
 
-    const prompt = `${previousCustomersContext} 
+    const prompt = `${previousIngredients} 
     
-    Generate a list of 20 unique ingredients that would be used to create drinks in a drink-creation game. 
+    Generate a list of unique ingredients that would be used to create drinks in a drink-creation game. 
+    Generate entries (no duplicates) for all and only the ingredients listed in the "likes", "dislikes", "theme", "offtheme" categories 
+    in this customer list: ${JSON.stringify(customers)}
+
     The response should be a list of JSON objects matching this exact structure:
 
     {
-        id: (number, in ascending order based on previous context), 
         name: (string - ingredient name), 
         sweetness: (number 0-10 - sweetness level from 0 to 10), 
         saltiness: (number 0-10 - saltiness level from 0 to 10), 
         sourness: (number 0-10 - sourness level from 0 to 10), 
         bitterness: (number 0-10 - bitterness level from 0 to 10), 
         umami: (number 0-10 - umami level from 0 to 10),
-        rarity: (number 0-10 - rarity of ingredient for drinks from 0 to 10), 
+        rarity: (number 0-10 - how rarely the ingredient is used in drinks from 0 to 10), 
     }
 
     Please respond with only the list of JSON objects, no additional text.`;
@@ -92,18 +97,18 @@ async function generateCustomerProfile(context) {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-export async function generateMultipleCustomers(times) {
-    let ingredientData = [];
+async function generateIngredientData(times) {
+    let ingredientData = []; 
     for (let i = 0; i < times; i++) {
         try {
-            const ingredientList = await generateCustomerProfile(ingredientData);
-            ingredientData.append(ingredientList);
+            const ingredientList = await generateIngredientList();
             if (i < times - 1) {
                 await delay(1000);
             }
+            ingredientData.append(ingredientList); 
         } catch (error) {
             console.error(`Error generating ingredient list ${i+1}:`, error);
         }
     }
-    return customers;
+    return ingredientData;
 }    
