@@ -1,7 +1,7 @@
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { customers } from "./generatedCustomers";
 
 // env var validation 
-
 const requiredEnvVars = [
     'REACT_APP_AWS_REGION',
     'REACT_APP_AWS_ACCESS_KEY_ID',
@@ -27,67 +27,20 @@ const client = new BedrockRuntimeClient({
     }
 });
 
-const customerSchema = {
-    function: {
-        name: "generateCustomer",
-        description: "Generate a unique customer profile for a abstract and sentiment-based drink shop game",
-        parameters: {
-            type: "object",
-            properties: {
-                name: {
-                    type: "string",
-                    description: "The customer's full name"
-                },
-                age: {
-                    type: "integer",
-                    description: "The customer's age (between 18 and 80)"
-                },
-                occupation: {
-                    type: "string",
-                    description: "The customer's job or primary activity"
-                },
-                personality: {
-                    type: "string",
-                    description: "Brief description of the customer's personality traits"
-                },
-                preferences: {
-                    type: "object",
-                    properties: {
-                        sweet: {
-                            type: "integer",
-                            description: "Preference for sweet flavors (0-100)"
-                        },
-                        bitter: {
-                            type: "integer",
-                            description: "Preference for bitter flavors (0-100)"
-                        },
-                        sour: {
-                            type: "integer",
-                            description: "Preference for sour flavors (0-100)"
-                        },
-                        savory: {
-                            type: "integer",
-                            description: "Preference for savory flavors (0-100)"
-                        }
-                    },
-                    required: ["sweet", "bitter", "sour", "savory"]
-                },
-                backstory: {
-                    type: "string",
-                    description: "A brief background story about the customer"
-                }
-            },
-            required: ["name", "age", "occupation", "personality", "preferences", "backstory"]
-        }
-    }
-};
-
 async function generateCustomerProfile() {
-    const prompt = `Generate a unique customer profile for a sentiment-based drink shop game. The response should be a JSON object matching this exact structure:
+    const previousCustomersContext = `Previously generated customers: ${JSON.stringify(customers)}. 
+       Please generate a customer profile that is unique and different from these.`;
+
+    const prompt = `${previousCustomersContext} 
+    
+    Generate a unique customer profile, who is a kid, for an abstract and sentiment-based drink shop game. 
+    The response should be a JSON object matching this exact structure:
 
     {
-        name: (string),
-        order: (string describing what they want, should be a creative and sentiment based drink request - for an easy level),
+        name: (string - customer name),
+        age: (number 5-10),
+        order: (string describing what they want, should be a sentiment-based drink request - for easy-to-medium level),
+        personality: (string - brief personality description for the customer)
         taste: {
             sweetness: (number 0-100),
             saltiness: (number 0-100),
@@ -95,10 +48,10 @@ async function generateCustomerProfile() {
             bitterness: (number 0-100),
             umami: (number 0-100)
         },
-        likes: (array of minimum 10 strings - ingredients they like),
-        dislikes: (array of minimum 5 strings - ingredients they dislike),
-        theme: (array of minimum 10 strings - specific food ingredients that match their order's theme),
-        offTheme: (array of minimum 5 strings - specific food ingredients that go against their order's theme),
+        likes: (array of minimum 10 strings - ingredients they personally like - not based on the order),
+        dislikes: (array of minimum 5 strings - ingredients they personally dislike - not based on the order),
+        theme: (array of minimum 10 strings - specific edible ingredients that match their order's theme, different from likes),
+        offTheme: (array of minimum 5 strings - specific edible ingredients that go against their order's theme, different from dislikes),
         decoration: (empty array for now),
         feedback: {
             positive: (array of 2 possible positive feedback strings - in character as this customer),
