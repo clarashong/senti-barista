@@ -29,17 +29,17 @@ const client = new BedrockRuntimeClient({
 
 async function generateCustomerProfile(context) {
     const previousCustomersContext = `Previously generated customers: ${JSON.stringify(customers + context)}. 
-       Please generate a unique customer profile, whose order is unique and different from these.`;
+       Please generate a unique customer profile, with a drink order that has a different theme from these`;
 
     const prompt = `${previousCustomersContext} 
     
-    Generate a unique customer profile for an abstract and sentiment-based drink shop game. 
+    Generate a unique male customer profile for an abstract and sentiment-based drink shop game. 
     The response should be a JSON object matching this exact structure:
 
     {
         name: (string - customer name),
         age: (number 5-80),
-        order: (string describing what they want, should be a sentiment-based drink request - for a very easy level),
+        order: (string describing what they want, should be an experience-based drink request - for a hard level),
         personality: (string - brief personality description for the customer)
         taste: {
             sweetness: (number 0-100),
