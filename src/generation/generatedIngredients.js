@@ -1,1739 +1,2621 @@
-export const ingredients =  [
-    {
-      "name": "Lime Juice",
+export const ingredients = [
+  {
+      "name": "lime juice",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 9,
       "bitterness": 0,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Ginger",
+  },
+  {
+      "name": "ginger",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 4,
       "umami": 3,
       "rarity": 5
-    },
-    {
-      "name": "Mint Leaves",
+  },
+  {
+      "name": "mint leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Honey",
+  },
+  {
+      "name": "honey",
       "sweetness": 10,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Tonic Water",
+  },
+  {
+      "name": "tonic water",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 2,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Cranberry Juice",
+  },
+  {
+      "name": "cranberry juice",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Coconut Milk",
+  },
+  {
+      "name": "coconut milk",
       "sweetness": 5,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 6
-    },
-    {
-      "name": "Espresso",
+  },
+  {
+      "name": "espresso",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 8,
       "umami": 5,
       "rarity": 5
-    },
-    {
-      "name": "Grenadine",
+  },
+  {
+      "name": "grenadine",
       "sweetness": 9,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Egg White",
+  },
+  {
+      "name": "egg white",
       "sweetness": 0,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Balsamic Vinegar",
+  },
+  {
+      "name": "balsamic vinegar",
       "sweetness": 3,
       "saltiness": 2,
       "sourness": 6,
       "bitterness": 1,
       "umami": 5,
       "rarity": 8
-    },
-    {
-      "name": "Lavender Syrup",
+  },
+  {
+      "name": "lavender syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Pineapple Juice",
+  },
+  {
+      "name": "pineapple juice",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Pomegranate Molasses",
+  },
+  {
+      "name": "pomegranate molasses",
       "sweetness": 6,
       "saltiness": 1,
       "sourness": 5,
       "bitterness": 0,
       "umami": 3,
       "rarity": 7
-    },
-    {
-      "name": "Almond Milk",
+  },
+  {
+      "name": "almond milk",
       "sweetness": 2,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 5
-    },
-    {
-      "name": "Rose Water",
+  },
+  {
+      "name": "rose water",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Wasabi Powder",
+  },
+  {
+      "name": "wasabi powder",
       "sweetness": 0,
       "saltiness": 3,
       "sourness": 5,
       "bitterness": 6,
       "umami": 8,
       "rarity": 9
-    },
-    {
-      "name": "Matcha Powder",
+  },
+  {
+      "name": "matcha powder",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 4,
       "umami": 3,
       "rarity": 6
-    },
-    {
-      "name": "Activated Charcoal",
+  },
+  {
+      "name": "activated charcoal",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Butterfly Pea Flower Tea",
+  },
+  {
+      "name": "butterfly pea flower tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Lemon Juice",
+  },
+  {
+      "name": "lemon juice",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 10,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Orange Juice",
+  },
+  {
+      "name": "orange juice",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Apple Juice",
+  },
+  {
+      "name": "apple juice",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Tomato Juice",
+  },
+  {
+      "name": "tomato juice",
       "sweetness": 3,
       "saltiness": 3,
       "sourness": 3,
       "bitterness": 0,
       "umami": 3,
       "rarity": 0
-    },
-    {
-      "name": "Soda Water",
+  },
+  {
+      "name": "soda water",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Milk",
+  },
+  {
+      "name": "milk",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 0
-    },
-    {
-      "name": "Coffee",
+  },
+  {
+      "name": "coffee",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 5,
       "umami": 3,
       "rarity": 0
-    },
-    {
-      "name": "Tea",
+  },
+  {
+      "name": "tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 1,
       "rarity": 0
-    },
-    {
-      "name": "Sugar",
+  },
+  {
+      "name": "sugar",
       "sweetness": 10,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Salt",
+  },
+  {
+      "name": "salt",
       "sweetness": 0,
       "saltiness": 10,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Lime Juice",
+  },
+  {
+      "name": "lime juice",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 9,
       "bitterness": 0,
       "umami": 0,
       "rarity": 0
-    },
-    {
-      "name": "Grapefruit Juice",
+  },
+  {
+      "name": "grapefruit juice",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 7,
       "bitterness": 2,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Pineapple Juice",
+  },
+  {
+      "name": "pineapple juice",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Cranberry Juice",
+  },
+  {
+      "name": "cranberry juice",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Coconut Water",
+  },
+  {
+      "name": "coconut water",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Almond Milk",
+  },
+  {
+      "name": "almond milk",
       "sweetness": 2,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 1
-    },
-    {
-      "name": "Soy Milk",
+  },
+  {
+      "name": "soy milk",
       "sweetness": 1,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 1
-    },
-    {
-      "name": "Ginger Ale",
+  },
+  {
+      "name": "ginger ale",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Tonic Water",
+  },
+  {
+      "name": "tonic water",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 2,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Club Soda",
+  },
+  {
+      "name": "club soda",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 1
-    },
-    {
-      "name": "Grenadine",
+  },
+  {
+      "name": "grenadine",
       "sweetness": 9,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 2
-    },
-    {
-      "name": "Simple Syrup",
+  },
+  {
+      "name": "simple syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 2
-    },
-    {
-      "name": "Honey",
+  },
+  {
+      "name": "honey",
       "sweetness": 10,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 2
-    },
-    {
-      "name": "Maple Syrup",
+  },
+  {
+      "name": "maple syrup",
       "sweetness": 9,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 2
-    },
-    {
-      "name": "Agave Nectar",
+  },
+  {
+      "name": "agave nectar",
       "sweetness": 9,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 2
-    },
-    {
-      "name": "Mint Leaves",
+  },
+  {
+      "name": "mint leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 0,
       "rarity": 2
-    },
-    {
-      "name": "Basil Leaves",
+  },
+  {
+      "name": "basil leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 1,
       "rarity": 2
-    },
-    {
-      "name": "Rosemary",
+  },
+  {
+      "name": "rosemary",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 2
-    },
-    {
-      "name": "Thyme",
+  },
+  {
+      "name": "thyme",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 2
-    },
-    {
-      "name": "Oregano",
+  },
+  {
+      "name": "oregano",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 2
-    },
-    {
-      "name": "Lemon Zest",
+  },
+  {
+      "name": "lemon zest",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 4,
       "bitterness": 2,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Lime Zest",
+  },
+  {
+      "name": "lime zest",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 4,
       "bitterness": 2,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Orange Zest",
+  },
+  {
+      "name": "orange zest",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 1,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Vanilla Extract",
+  },
+  {
+      "name": "vanilla extract",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 3
-    },
-    {
-      "name": "Almond Extract",
+  },
+  {
+      "name": "almond extract",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 1,
       "rarity": 3
-    },
-    {
-      "name": "Cocoa Powder",
+  },
+  {
+      "name": "cocoa powder",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 6,
       "umami": 3,
       "rarity": 3
-    },
-    {
-      "name": "Cinnamon",
+  },
+  {
+      "name": "cinnamon",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 1,
       "rarity": 3
-    },
-    {
-      "name": "Nutmeg",
+  },
+  {
+      "name": "nutmeg",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 3,
       "umami": 2,
       "rarity": 3
-    },
-    {
-      "name": "Cloves",
+  },
+  {
+      "name": "cloves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 4,
       "umami": 2,
       "rarity": 3
-    },
-    {
-      "name": "Star Anise",
+  },
+  {
+      "name": "star anise",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 3,
       "umami": 2,
       "rarity": 3
-    },
-    {
-      "name": "Black Pepper",
+  },
+  {
+      "name": "black pepper",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 4,
       "umami": 2,
       "rarity": 3
-    },
-    {
-      "name": "Cayenne Pepper",
+  },
+  {
+      "name": "cayenne pepper",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 5,
       "umami": 1,
       "rarity": 3
-    },
-    {
-      "name": "Worcestershire Sauce",
+  },
+  {
+      "name": "worcestershire sauce",
       "sweetness": 1,
       "saltiness": 5,
       "sourness": 2,
       "bitterness": 2,
       "umami": 4,
       "rarity": 3
-    },
-    {
-      "name": "Soy Sauce",
+  },
+  {
+      "name": "soy sauce",
       "sweetness": 1,
       "saltiness": 6,
       "sourness": 1,
       "bitterness": 1,
       "umami": 5,
       "rarity": 3
-    },
-    {
-      "name": "Rice Vinegar",
+  },
+  {
+      "name": "rice vinegar",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 5,
       "bitterness": 0,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Apple Cider Vinegar",
+  },
+  {
+      "name": "apple cider vinegar",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 5,
       "bitterness": 0,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "White Vinegar",
+  },
+  {
+      "name": "white vinegar",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 6,
       "bitterness": 0,
       "umami": 0,
       "rarity": 3
-    },
-    {
-      "name": "Red Wine Vinegar",
+  },
+  {
+      "name": "red wine vinegar",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 5,
       "bitterness": 0,
       "umami": 1,
       "rarity": 3
-    },
-    {
-      "name": "Balsamic Vinegar",
+  },
+  {
+      "name": "balsamic vinegar",
       "sweetness": 3,
       "saltiness": 2,
       "sourness": 6,
       "bitterness": 1,
       "umami": 5,
       "rarity": 3
-    },
-    {
-      "name": "Lemon Juice",
+  },
+  {
+      "name": "lemon juice",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 10,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Lime Juice",
+  },
+  {
+      "name": "lime juice",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 9,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Grapefruit Juice",
+  },
+  {
+      "name": "grapefruit juice",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 7,
       "bitterness": 2,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Pomegranate Juice",
+  },
+  {
+      "name": "pomegranate juice",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Ginger Beer",
+  },
+  {
+      "name": "ginger beer",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 2,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Root Beer",
+  },
+  {
+      "name": "root beer",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Chamomile Tea",
+  },
+  {
+      "name": "chamomile tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Green Tea",
+  },
+  {
+      "name": "green tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Black Tea",
+  },
+  {
+      "name": "black tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 3,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Oolong Tea",
+  },
+  {
+      "name": "oolong tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 4
-    },
-    {
-      "name": "Rooibos Tea",
+  },
+  {
+      "name": "rooibos tea",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Hibiscus Tea",
+  },
+  {
+      "name": "hibiscus tea",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Raspberry Syrup",
+  },
+  {
+      "name": "raspberry syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Strawberry Syrup",
+  },
+  {
+      "name": "strawberry syrup",
       "sweetness": 9,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Blueberry Syrup",
+  },
+  {
+      "name": "blueberry syrup",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Chocolate Syrup",
+  },
+  {
+      "name": "chocolate syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Caramel Syrup",
+  },
+  {
+      "name": "caramel syrup",
       "sweetness": 9,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 2,
       "rarity": 4
-    },
-    {
-      "name": "Hazelnut Syrup",
+  },
+  {
+      "name": "hazelnut syrup",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Vanilla Syrup",
+  },
+  {
+      "name": "vanilla syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Almond Syrup",
+  },
+  {
+      "name": "almond syrup",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 4
-    },
-    {
-      "name": "Coconut Syrup",
+  },
+  {
+      "name": "coconut syrup",
       "sweetness": 8,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Peppermint Syrup",
+  },
+  {
+      "name": "peppermint syrup",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Lavender Syrup",
+  },
+  {
+      "name": "lavender syrup",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Rose Syrup",
+  },
+  {
+      "name": "rose syrup",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 4
-    },
-    {
-      "name": "Yuzu Juice",
+  },
+  {
+      "name": "yuzu juice",
       "sweetness": 3,
       "saltiness": 0,
       "sourness": 8,
       "bitterness": 2,
       "umami": 0,
       "rarity": 5
-    },
-    {
-      "name": "Elderflower Cordial",
+  },
+  {
+      "name": "elderflower cordial",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 5
-    },
-    {
-      "name": "Tamarind Paste",
+  },
+  {
+      "name": "tamarind paste",
       "sweetness": 2,
       "saltiness": 2,
       "sourness": 5,
       "bitterness": 1,
       "umami": 3,
       "rarity": 5
-    },
-    {
-      "name": "Sumac",
+  },
+  {
+      "name": "sumac",
       "sweetness": 0,
       "saltiness": 2,
       "sourness": 4,
       "bitterness": 2,
       "umami": 2,
       "rarity": 5
-    },
-    {
-      "name": "Cardamom",
+  },
+  {
+      "name": "cardamom",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 5
-    },
-    {
-      "name": "Aquafaba",
+  },
+  {
+      "name": "aquafaba",
       "sweetness": 0,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 5
-    },
-    {
-      "name": "Orgeat Syrup",
+  },
+  {
+      "name": "orgeat syrup",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 5
-    },
-    {
-      "name": "Falernum",
+  },
+  {
+      "name": "falernum",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 1,
       "rarity": 5
-    },
-    {
-      "name": "Shrub Syrup",
+  },
+  {
+      "name": "shrub syrup",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 5,
       "bitterness": 0,
       "umami": 0,
       "rarity": 5
-    },
-    {
-      "name": "Oat Milk",
+  },
+  {
+      "name": "oat milk",
       "sweetness": 1,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 5
-    },
-    {
-      "name": "Quince Juice",
+  },
+  {
+      "name": "quince juice",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Passionfruit Puree",
+  },
+  {
+      "name": "passionfruit puree",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 4,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Lychee Puree",
+  },
+  {
+      "name": "lychee puree",
       "sweetness": 8,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Dragonfruit Puree",
+  },
+  {
+      "name": "dragonfruit puree",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Guava Puree",
+  },
+  {
+      "name": "guava puree",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Soursop Puree",
+  },
+  {
+      "name": "soursop puree",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Cherimoya Puree",
+  },
+  {
+      "name": "cherimoya puree",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 1,
       "rarity": 6
-    },
-    {
-      "name": "Jackfruit Puree",
+  },
+  {
+      "name": "jackfruit puree",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 6
-    },
-    {
-      "name": "Durian Puree",
+  },
+  {
+      "name": "durian puree",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 5,
       "rarity": 6
-    },
-    {
-      "name": "Salak Puree",
+  },
+  {
+      "name": "salak puree",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 6
-    },
-    {
-      "name": "Kaffir Lime Leaves",
+  },
+  {
+      "name": "kaffir lime leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 2,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Galangal",
+  },
+  {
+      "name": "galangal",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Lemongrass",
+  },
+  {
+      "name": "lemongrass",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 2,
       "umami": 1,
       "rarity": 7
-    },
-    {
-      "name": "Turmeric",
+  },
+  {
+      "name": "turmeric",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Curry Leaves",
+  },
+  {
+      "name": "curry leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 3,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Tamarind Juice",
+  },
+  {
+      "name": "tamarind juice",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 6,
       "bitterness": 0,
       "umami": 1,
       "rarity": 7
-    },
-    {
-      "name": "Goji Berry Juice",
+  },
+  {
+      "name": "goji berry juice",
       "sweetness": 4,
       "saltiness": 1,
       "sourness": 2,
       "bitterness": 0,
       "umami": 2,
       "rarity": 7
-    },
-    {
-      "name": "Calamansi Juice",
+  },
+  {
+      "name": "calamansi juice",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 7,
       "bitterness": 1,
       "umami": 0,
       "rarity": 7
-    },
-    {
-      "name": "Hibiscus Syrup",
+  },
+  {
+      "name": "hibiscus syrup",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 7
-    },
-    {
-      "name": "Rhubarb Syrup",
+  },
+  {
+      "name": "rhubarb syrup",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 4,
       "bitterness": 0,
       "umami": 0,
       "rarity": 7
-    },
-    {
-      "name": "Pine Pollen",
+  },
+  {
+      "name": "pine pollen",
       "sweetness": 2,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 2,
       "umami": 5,
       "rarity": 8
-    },
-    {
-      "name": "Tonka Bean",
+  },
+  {
+      "name": "tonka bean",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 6,
       "rarity": 8
-    },
-    {
-      "name": "Meadowsweet",
+  },
+  {
+      "name": "meadowsweet",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 3,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Damiana",
+  },
+  {
+      "name": "damiana",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 4,
       "umami": 2,
       "rarity": 8
-    },
-    {
-      "name": "Wormwood",
+  },
+  {
+      "name": "wormwood",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 7,
       "umami": 1,
       "rarity": 8
-    },
-    {
-      "name": "Gentian Root",
+  },
+  {
+      "name": "gentian root",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 8,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Saffron",
+  },
+  {
+      "name": "saffron",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 2,
       "umami": 5,
       "rarity": 8
-    },
-    {
-      "name": "Ambergris",
+  },
+  {
+      "name": "ambergris",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 6,
       "rarity": 8
-    },
-    {
-      "name": "Miracle Berry",
+  },
+  {
+      "name": "miracle berry",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Cherimoya",
+  },
+  {
+      "name": "cherimoya",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 1,
       "rarity": 8
-    },
-    {
-      "name": "Cupuaçu",
+  },
+  {
+      "name": "cupuaçu",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Camu Camu",
+  },
+  {
+      "name": "camu camu",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 8,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Lucuma",
+  },
+  {
+      "name": "lucuma",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 8
-    },
-    {
-      "name": "Mamey Sapote",
+  },
+  {
+      "name": "mamey sapote",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 8
-    },
-    {
-      "name": "Pitahaya",
+  },
+  {
+      "name": "pitahaya",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Ackee",
+  },
+  {
+      "name": "ackee",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 2,
       "bitterness": 0,
       "umami": 1,
       "rarity": 8
-    },
-    {
-      "name": "Breadfruit",
+  },
+  {
+      "name": "breadfruit",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 2,
       "rarity": 8
-    },
-    {
-      "name": "Rambutan",
+  },
+  {
+      "name": "rambutan",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Longan",
+  },
+  {
+      "name": "longan",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Langsat",
+  },
+  {
+      "name": "langsat",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 8
-    },
-    {
-      "name": "Birch Water",
+  },
+  {
+      "name": "birch water",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Sea Buckthorn",
+  },
+  {
+      "name": "sea buckthorn",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 4,
       "bitterness": 2,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Yuzu Kosho",
+  },
+  {
+      "name": "yuzu kosho",
       "sweetness": 0,
       "saltiness": 4,
       "sourness": 5,
       "bitterness": 3,
       "umami": 4,
       "rarity": 9
-    },
-    {
-      "name": "Szechuan Peppercorns",
+  },
+  {
+      "name": "szechuan peppercorns",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 7,
       "umami": 4,
       "rarity": 9
-    },
-    {
-      "name": "Makrut Lime Leaves",
+  },
+  {
+      "name": "makrut lime leaves",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 4,
       "umami": 2,
       "rarity": 9
-    },
-    {
-      "name": "Mangosteen",
+  },
+  {
+      "name": "mangosteen",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 1,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Salak",
+  },
+  {
+      "name": "salak",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Rambai",
+  },
+  {
+      "name": "rambai",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Santol",
+  },
+  {
+      "name": "santol",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Cempedak",
+  },
+  {
+      "name": "cempedak",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 9
-    },
-    {
-      "name": "Jabuticaba",
+  },
+  {
+      "name": "jabuticaba",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Feijoa",
+  },
+  {
+      "name": "feijoa",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Cherimoya",
+  },
+  {
+      "name": "cherimoya",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 1,
       "rarity": 9
-    },
-    {
-      "name": "Cupuaçu",
+  },
+  {
+      "name": "cupuaçu",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Camu Camu",
+  },
+  {
+      "name": "camu camu",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 8,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Lucuma",
+  },
+  {
+      "name": "lucuma",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 9
-    },
-    {
-      "name": "Mamey Sapote",
+  },
+  {
+      "name": "mamey sapote",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 9
-    },
-    {
-      "name": "Pitahaya",
+  },
+  {
+      "name": "pitahaya",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Ackee",
+  },
+  {
+      "name": "ackee",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 2,
       "bitterness": 0,
       "umami": 1,
       "rarity": 9
-    },
-    {
-      "name": "Breadfruit",
+  },
+  {
+      "name": "breadfruit",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 2,
       "rarity": 9
-    },
-    {
-      "name": "Rambutan",
+  },
+  {
+      "name": "rambutan",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Longan",
+  },
+  {
+      "name": "longan",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Langsat",
+  },
+  {
+      "name": "langsat",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 9
-    },
-    {
-      "name": "Miracle Fruit",
+  },
+  {
+      "name": "miracle fruit",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Tongkat Ali",
+  },
+  {
+      "name": "tongkat ali",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 6,
       "umami": 4,
       "rarity": 10
-    },
-    {
-      "name": "Kava",
+  },
+  {
+      "name": "kava",
       "sweetness": 0,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 5,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Betel Leaves",
+  },
+  {
+      "name": "betel leaves",
       "sweetness": 0,
       "saltiness": 1,
       "sourness": 0,
       "bitterness": 3,
       "umami": 2,
       "rarity": 10
-    },
-    {
-      "name": "Bamboo Shoots",
+  },
+  {
+      "name": "bamboo shoots",
       "sweetness": 1,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 3,
       "rarity": 10
-    },
-    {
-      "name": "Durian",
+  },
+  {
+      "name": "durian",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 1,
       "umami": 5,
       "rarity": 10
-    },
-    {
-      "name": "Jackfruit",
+  },
+  {
+      "name": "jackfruit",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Soursop",
+  },
+  {
+      "name": "soursop",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Dragonfruit",
+  },
+  {
+      "name": "dragonfruit",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Mangosteen",
+  },
+  {
+      "name": "mangosteen",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 1,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Rambutan",
+  },
+  {
+      "name": "rambutan",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Longan",
+  },
+  {
+      "name": "longan",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Langsat",
+  },
+  {
+      "name": "langsat",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Salak",
+  },
+  {
+      "name": "salak",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Rambai",
+  },
+  {
+      "name": "rambai",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Santol",
+  },
+  {
+      "name": "santol",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Cempedak",
+  },
+  {
+      "name": "cempedak",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Jabuticaba",
+  },
+  {
+      "name": "jabuticaba",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 3,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Feijoa",
+  },
+  {
+      "name": "feijoa",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Cherimoya",
+  },
+  {
+      "name": "cherimoya",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 1,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Cupuaçu",
+  },
+  {
+      "name": "cupuaçu",
       "sweetness": 5,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Camu Camu",
+  },
+  {
+      "name": "camu camu",
       "sweetness": 2,
       "saltiness": 0,
       "sourness": 8,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Lucuma",
+  },
+  {
+      "name": "lucuma",
       "sweetness": 7,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Mamey Sapote",
+  },
+  {
+      "name": "mamey sapote",
       "sweetness": 6,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Pitahaya",
+  },
+  {
+      "name": "pitahaya",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 2,
       "bitterness": 0,
       "umami": 0,
       "rarity": 10
-    },
-    {
-      "name": "Ackee",
+  },
+  {
+      "name": "ackee",
       "sweetness": 3,
       "saltiness": 1,
       "sourness": 2,
       "bitterness": 0,
       "umami": 1,
       "rarity": 10
-    },
-    {
-      "name": "Breadfruit",
+  },
+  {
+      "name": "breadfruit",
       "sweetness": 4,
       "saltiness": 0,
       "sourness": 0,
       "bitterness": 0,
       "umami": 2,
       "rarity": 10
+  },
+  {
+    "name": "chocolate",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 4,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "strawberries",
+    "sweetness": 6,
+    "saltiness": 0,
+    "sourness": 3,
+    "bitterness": 0,
+    "umami": 1,
+    "rarity": 4
+    },
+    {
+    "name": "whipped cream",
+    "sweetness": 5,
+    "saltiness": 1,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "sprinkles",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "gummy bears",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "marshmallows",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "cotton candy",
+    "sweetness": 10,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "caramel",
+    "sweetness": 8,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 2,
+    "rarity": 4
+    },
+    {
+    "name": "fruit punch",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 4,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "lollipops",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "coffee",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 3,
+    "bitterness": 7,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "bitter melon",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 9,
+    "umami": 1,
+    "rarity": 6
+    },
+    {
+    "name": "olives",
+    "sweetness": 0,
+    "saltiness": 7,
+    "sourness": 3,
+    "bitterness": 1,
+    "umami": 5,
+    "rarity": 4
+    },
+    {
+    "name": "ginger",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 3,
+    "bitterness": 5,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "radish",
+    "sweetness": 2,
+    "saltiness": 1,
+    "sourness": 4,
+    "bitterness": 3,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "rainbow sour straws",
+    "sweetness": 6,
+    "saltiness": 1,
+    "sourness": 8,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "gummy worms",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "rock candy",
+    "sweetness": 10,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "jelly beans",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "lemon drops",
+    "sweetness": 6,
+    "saltiness": 0,
+    "sourness": 8,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "gumdrops",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "licorice laces",
+    "sweetness": 5,
+    "saltiness": 1,
+    "sourness": 1,
+    "bitterness": 5,
+    "umami": 2,
+    "rarity": 4
+    },
+    {
+    "name": "candy canes",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "gingerbread",
+    "sweetness": 6,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 2,
+    "rarity": 4
+    },
+    {
+    "name": "peppermint patties",
+    "sweetness": 7,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "matcha powder",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 6,
+    "umami": 4,
+    "rarity": 5
+    },
+    {
+    "name": "turmeric",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 3,
+    "umami": 4,
+    "rarity": 4
+    },
+    {
+    "name": "black pepper",
+    "sweetness": 0,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 7,
+    "umami": 3,
+    "rarity": 3
+    },
+    {
+    "name": "wasabi",
+    "sweetness": 0,
+    "saltiness": 2,
+    "sourness": 5,
+    "bitterness": 8,
+    "umami": 3,
+    "rarity": 5
+    },
+    {
+    "name": "soy sauce",
+    "sweetness": 1,
+    "saltiness": 9,
+    "sourness": 2,
+    "bitterness": 1,
+    "umami": 8,
+    "rarity": 3
+    },
+    {
+    "name": "oranges",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 4,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "pineapple",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "mango",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 1,
+    "rarity": 4
+    },
+    {
+    "name": "honey",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "vanilla",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "coconut",
+    "sweetness": 4,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 1,
+    "rarity": 4
+    },
+    {
+    "name": "mint",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 3,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "lemon",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 8,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "dark chocolate",
+    "sweetness": 4,
+    "saltiness": 1,
+    "sourness": 1,
+    "bitterness": 7,
+    "umami": 3,
+    "rarity": 4
+    },
+    {
+    "name": "beets",
+    "sweetness": 4,
+    "saltiness": 1,
+    "sourness": 2,
+    "bitterness": 1,
+    "umami": 3,
+    "rarity": 3
+    },
+    {
+    "name": "anchovies",
+    "sweetness": 0,
+    "saltiness": 9,
+    "sourness": 2,
+    "bitterness": 1,
+    "umami": 8,
+    "rarity": 6
+    },
+    {
+    "name": "sunflower petals",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 1,
+    "rarity": 6
+    },
+    {
+    "name": "edible glitter",
+    "sweetness": 5,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 7
+    },
+    {
+    "name": "rainbow sprinkles",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "candied violets",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 7
+    },
+    {
+    "name": "rose water",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 6
+    },
+    {
+    "name": "saffron",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 3,
+    "rarity": 8
+    },
+    {
+    "name": "lavender",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 6
+    },
+    {
+    "name": "chamomile",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 3,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "hibiscus",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 5,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "butterfly pea flower",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "activated charcoal",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 6
+    },
+    {
+    "name": "black sesame",
+    "sweetness": 1,
+    "saltiness": 2,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 4,
+    "rarity": 4
+    },
+    {
+    "name": "squid ink",
+    "sweetness": 0,
+    "saltiness": 4,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 5,
+    "rarity": 7
+    },
+    {
+    "name": "matcha",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 4,
+    "umami": 3,
+    "rarity": 5
+    },
+    {
+    "name": "spirulina",
+    "sweetness": 0,
+    "saltiness": 2,
+    "sourness": 0,
+    "bitterness": 3,
+    "umami": 4,
+    "rarity": 6
+    },
+    {
+    "name": "lime",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 8,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "cucumber",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "strawberry",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 3,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "watermelon",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "basil",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 3,
+    "rarity": 3
+    },
+    {
+    "name": "licorice",
+    "sweetness": 5,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 5,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "anise",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 4,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "molasses",
+    "sweetness": 7,
+    "saltiness": 2,
+    "sourness": 1,
+    "bitterness": 1,
+    "umami": 4,
+    "rarity": 3
+    },
+    {
+    "name": "citrus",
+    "sweetness": 3,
+    "saltiness": 0,
+    "sourness": 6,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "tropical fruits",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "herbs",
+    "sweetness": 0,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 3,
+    "rarity": 2
+    },
+    {
+    "name": "floral",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "berries",
+    "sweetness": 5,
+    "saltiness": 0,
+    "sourness": 4,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "melon",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "lemongrass",
+    "sweetness": 0,
+    "saltiness": 1,
+    "sourness": 2,
+    "bitterness": 2,
+    "umami": 1,
+    "rarity": 4
+    },
+    {
+    "name": "nuts",
+    "sweetness": 2,
+    "saltiness": 2,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 4,
+    "rarity": 3
+    },
+    {
+    "name": "spices",
+    "sweetness": 0,
+    "saltiness": 2,
+    "sourness": 0,
+    "bitterness": 4,
+    "umami": 3,
+    "rarity": 2
+    },
+    {
+    "name": "dairy",
+    "sweetness": 4,
+    "saltiness": 3,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 5,
+    "rarity": 2
+    },
+    {
+    "name": "peaches",
+    "sweetness": 7,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "cream",
+    "sweetness": 4,
+    "saltiness": 2,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 3,
+    "rarity": 2
+    },
+    {
+    "name": "whiskey",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 3,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "blue cheese",
+    "sweetness": 0,
+    "saltiness": 6,
+    "sourness": 3,
+    "bitterness": 2,
+    "umami": 7,
+    "rarity": 5
+    },
+    {
+    "name": "bubblegum",
+    "sweetness": 9,
+    "saltiness": 0,
+    "sourness": 1,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "popsicles",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "lemonade",
+    "sweetness": 6,
+    "saltiness": 0,
+    "sourness": 6,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "peanut butter",
+    "sweetness": 3,
+    "saltiness": 3,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 4,
+    "rarity": 2
+    },
+    {
+    "name": "jelly",
+    "sweetness": 8,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 2
+    },
+    {
+    "name": "graham crackers",
+    "sweetness": 5,
+    "saltiness": 2,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 2,
+    "rarity": 2
+    },
+    {
+    "name": "chocolate milk",
+    "sweetness": 7,
+    "saltiness": 1,
+    "sourness": 0,
+    "bitterness": 2,
+    "umami": 2,
+    "rarity": 2
+    },
+    {
+    "name": "espresso",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 8,
+    "umami": 2,
+    "rarity": 3
+    },
+    {
+    "name": "red wine",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 3,
+    "bitterness": 3,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "brandy",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 4
+    },
+    {
+    "name": "smoked paprika",
+    "sweetness": 0,
+    "saltiness": 3,
+    "sourness": 0,
+    "bitterness": 3,
+    "umami": 5,
+    "rarity": 4
+    },
+    {
+    "name": "truffles",
+    "sweetness": 0,
+    "saltiness": 4,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 8,
+    "rarity": 8
+    },
+    {
+    "name": "raspberries",
+    "sweetness": 4,
+    "saltiness": 0,
+    "sourness": 5,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "rose petals",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 1,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "lemon zest",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 8,
+    "bitterness": 2,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "tonic water",
+    "sweetness": 3,
+    "saltiness": 0,
+    "sourness": 2,
+    "bitterness": 3,
+    "umami": 0,
+    "rarity": 3
+    },
+    {
+    "name": "bitters",
+    "sweetness": 0,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 8,
+    "umami": 1,
+    "rarity": 4
+    },
+    {
+    "name": "violets",
+    "sweetness": 2,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 6
+    },
+    {
+    "name": "jasmine",
+    "sweetness": 1,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
+    },
+    {
+    "name": "orange blossom",
+    "sweetness": 3,
+    "saltiness": 0,
+    "sourness": 0,
+    "bitterness": 0,
+    "umami": 0,
+    "rarity": 5
     }
 ]; 
