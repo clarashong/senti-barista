@@ -702,7 +702,7 @@ function Level({ levelNumber = 1 }) {
                 }}>
                     <button
                         onClick={previousPage}
-                        disabled={currentPage === 1 || currentPage === 4}
+                        disabled={currentPage === 1}
                         style={{
                             padding: '10px 20px',
                             cursor: currentPage === 1 || currentPage === 4 ? 'not-allowed' : 'pointer',
@@ -737,8 +737,6 @@ function Level({ levelNumber = 1 }) {
             </div>
         </div>
     );
-
-    
 }
 
 export default Level;
