@@ -95,6 +95,10 @@ function Level({ levelNumber = 1 }) {
         return 'drink_' + decorations[0] + '.png';
     };
 
+    const getCustomerImage = () => {
+        return customer.name.toLowerCase() + '.png';
+    }
+
     const getFeedback = () => {
         let numberScore = parseInt(score.total)
         if (numberScore < 20) return customer.feedback.negative[0];
@@ -145,7 +149,7 @@ function Level({ levelNumber = 1 }) {
                     overflow: 'hidden' // ensures the image stays within the circular div
                 }}>
                     <img
-                        src = 'assets/game/customers/timmy.png'
+                        src = {'assets/game/customers/' + getCustomerImage()}
                         style = {{
                             width: '60px',
                             height: '60px',
@@ -191,7 +195,7 @@ function Level({ levelNumber = 1 }) {
                             gap: '30px',
                             marginBottom: '30px' 
                         }}>
-                            {/* Image placeholder */}
+                            {/* Image */}
                             <div
                                 style={{
                                     width: '250px',
@@ -205,7 +209,7 @@ function Level({ levelNumber = 1 }) {
                                 }}
                             >
                                 <img 
-                                    src='/assets/game/customers/timmy.png'
+                                    src={'/assets/game/customers/' + getCustomerImage()}
                                     alt="Customer headshot"
                                     className="customer-headshot"
                                     style={{
@@ -438,7 +442,7 @@ function Level({ levelNumber = 1 }) {
                                 }}
                             >
                                 <img 
-                                    src='/assets/game/customers/timmy.png'
+                                    src={'/assets/game/customers/' + getCustomerImage()}
                                     alt="Customer headshot"
                                     className="customer-headshot"
                                     style={{
