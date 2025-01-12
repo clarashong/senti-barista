@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useGame } from '../context/GameContext';
 import './Level.css';
+import { useNavigate } from 'react-router-dom';
 
 function Level({ levelNumber = 1 }) {
+    const navigate = useNavigate(); 
+    const handleFinish = () => {
+        console.log("navigating")
+        navigate('/levelselect');  // Navigate to level selection page
+    };
+
     const [currentPage, setCurrentPage] = useState(1);
     const [score, setScore] = useState(null);
     
@@ -53,6 +60,9 @@ function Level({ levelNumber = 1 }) {
         if (currentPage === 3) {
             checkAnswers();
         }
+        if (currentPage === 4) {
+            handleFinish(); 
+        }
     };
 
     const previousPage = () => {
@@ -101,11 +111,8 @@ function Level({ levelNumber = 1 }) {
 
     const getFeedback = () => {
         let numberScore = parseInt(score.total)
-        if (numberScore < 20) return customer.feedback.negative[0];
-        if (numberScore < 40) return customer.feedback.negative[1];
-        if (numberScore < 60) return customer.feedback.neutral[0]; 
-        if (numberScore < 80) return customer.feedback.neutral[1];
-        if (numberScore < 90) return customer.feedback.positive[0];
+        if (numberScore < 40) return customer.feedback.negative[0];
+        if (numberScore < 80) return customer.feedback.neutral[0]; 
         return customer.feedback.positive[1];
     };
 
@@ -149,7 +156,7 @@ function Level({ levelNumber = 1 }) {
                     overflow: 'hidden' // ensures the image stays within the circular div
                 }}>
                     <img
-                        src = {'assets/game/customers/' + getCustomerImage()}
+                        src = {'/assets/game/customers/' + getCustomerImage()}
                         style = {{
                             width: '60px',
                             height: '60px',
@@ -719,7 +726,6 @@ function Level({ levelNumber = 1 }) {
 
                     <button
                         onClick={nextPage}
-                        disabled={currentPage === 4}
                         style={{
                             padding: '10px 20px',
                             cursor: 'pointer',

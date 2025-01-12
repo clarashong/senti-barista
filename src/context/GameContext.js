@@ -1,21 +1,25 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { customers } from '../data/customers';
 import { levels } from '../data/levels';
 import { ingredients } from '../data/ingredients';
 import { availableDecorations } from '../data/decorations';
+import { useLocation } from 'react-router-dom';
 
 const GameContext = createContext();
 
 export function GameProvider({ children }) {
+    
     const [currentLevel, setCurrentLevel] = useState(1);
     const [score, setScore] = useState(0);
     const [selectedIngredients, setSelectedIngredients] = useState(["","","",""]);
     const [decorations, setDecorations] = useState([]);
-
+    
+    const location = useLocation();
+    const levelId = location.state?.levelId;
+    
     // Get current customer based on level
     const getCurrentCustomer = () => {
-        const level = levels.find(l => l.level === currentLevel);
-        return customers.find(c => c.id === level.customerId);
+        return customers.find(c => c.id === levelId);
     };
 
     // Loop through selected ingredients and check against customer preferences
@@ -97,7 +101,12 @@ export function GameProvider({ children }) {
 
     return (
         <GameContext.Provider value={value}>
-            {children}
+            <div className="App" style={{
+                minHeight: '100vh',
+                backgroundColor: '#dfc98a'
+            }}>
+                {children}
+            </div>
         </GameContext.Provider>
     );
 }

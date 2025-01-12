@@ -1,0 +1,171 @@
+/* LevelSelect.css */
+.level-select-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.back-button {
+    background-color: rgb(95, 66, 43);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: transform 0.2s;
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+}
+
+.header h2 {
+    color: rgb(95, 66, 43);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    flex: 1;
+    margin-top: -2rem; 
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    border-radius: 15px;
+    width: 350px;
+}
+
+.carousel-track {
+    transition: transform 0.5s ease;
+    display: flex;
+}
+
+.carousel-button {
+    border: none;
+    border-radius: 50%;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    background-color: rgb(95, 66, 43);
+}
+  
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+  
+ 
+.level-card {
+    width: 350px;
+    min-width: 350px;
+    height: 400px;
+    background-color: #936A49;
+    display: flex;
+    align-items: center;  
+    justify-content: center; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.level-card:hover {
+    transform: scale(1.02); /* Slight scale up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+.level-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center all items horizontally */
+    gap: 1.5rem;  /* Consistent spacing between elements */
+    padding: 10px; 
+}
+ 
+.level-content h2 {
+    font-size: 36px;
+    color: white; 
+    margin: 0
+}
+
+.customer-image-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    isolation: isolate; 
+}
+  
+.customer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: normal; /* Ensures normal blending */
+    display: block; /* Removes any potential spacing issues */
+}
+  
+  .customer-info {
+    text-align: center;
+    max-width: 80%;  /* Limit text width for better readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;  /* Space between name and description */
+  }
+  
+  .customer-info h4 {
+    color: white;
+    font-size: 1.4rem;
+    margin: 0;  /* Remove margins */
+  }
+  
+.customer-info p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    margin: 0;  /* Remove margins */
+    line-height: 1.4;
+}
+
+/* Update mobile styles */
+@media (max-width: 768px) {
+.level-card {
+    width: 300px;
+    min-width: 300px;
+    height: 400px;
+}
+
+.customer-image-container {
+    width: 120px;
+    height: 120px;
+}
+
+.customer-info {
+    max-width: 90%;
+}
+}
