@@ -2,7 +2,6 @@ import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedroc
 import { ingredients } from "./generatedIngredients";
 import { custIngredients } from "./customerIngredients";
 
-
 // env var validation 
 const requiredEnvVars = [
     'REACT_APP_AWS_REGION',
