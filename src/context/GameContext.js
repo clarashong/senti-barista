@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext } from 'react';
 import { customers } from '../data/customers';
 import { levels } from '../data/levels';
 import { ingredients } from '../data/ingredients';
+import { availableDecorations } from '../data/decorations';
 
 const GameContext = createContext();
 
@@ -90,7 +91,8 @@ export function GameProvider({ children }) {
         decorations,
         setDecorations,
         getCurrentCustomer,
-        calculateScore
+        calculateScore,
+        availableDecorations
     };
 
     return (

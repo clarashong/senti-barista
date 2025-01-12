@@ -14,9 +14,9 @@ function Level({ levelNumber = 1 }) {
         decorations,
         setDecorations,
         getCurrentCustomer,
-        calculateScore
+        calculateScore,
+        availableDecorations
     } = useGame();
-
     const customer = getCurrentCustomer(); 
     // Handle ingredient change
     const handleIngredientChange = (index, value) => {
@@ -90,6 +90,11 @@ function Level({ levelNumber = 1 }) {
         }
     }, [selectedIngredients]);
     
+    const getDecoratedDrinkImage = () => {
+        if (decorations.length == 0) return 'drink_4.png'; 
+        return 'drink_' + decorations[0] + '.png';
+    }
+
     // Render different pages based on currentPage
     const renderPage = () => {
         switch (currentPage) {
@@ -127,8 +132,8 @@ function Level({ levelNumber = 1 }) {
                             {/* Image placeholder */}
                             <div
                                 style={{
-                                    width: '300px',
-                                    height: '300px',
+                                    width: '250px',
+                                    height: '250px',
                                     borderRadius: '50%',
                                     backgroundColor: '#F5F5F5', // whitesmoke 
                                     display: 'flex',
@@ -142,8 +147,8 @@ function Level({ levelNumber = 1 }) {
                                     alt="Customer headshot"
                                     className="customer-headshot"
                                     style={{
-                                        width: '300px',
-                                        height: '300px',
+                                        width: '240px',
+                                        height: '240px',
                                         borderRadius: '50%',
                                         objectFit: 'cover'
                                     }}
@@ -154,7 +159,7 @@ function Level({ levelNumber = 1 }) {
                             <div style={{ 
                                 position: 'relative',
                                 backgroundColor: '#F5F5F5',
-                                border: '3px solid #936A49',
+                                border: 'none',
                                 borderRadius: '20px',
                                 padding: '20px',
                                 maxWidth: '300px'
@@ -169,10 +174,12 @@ function Level({ levelNumber = 1 }) {
                                     height: '0',
                                     borderTop: '10px solid transparent',
                                     borderBottom: '10px solid transparent',
-                                    borderRight: '20px solid #936A49'
+                                    borderRight: '20px solid #F5F5F5'
                                 }}></div>
-                                <p style={{ margin: 0,
-                                    color: '#5F422B'
+                                <p style={{ 
+                                    margin: 0,
+                                    color: '#5F422B',
+                                    fontWeight: 'bold'
                                 }}>{customer.order}</p>
                             </div>
                         </div>
@@ -183,10 +190,10 @@ function Level({ levelNumber = 1 }) {
                 case 2:
                     return (
                         <div className="ingredients-page">
-                            <h2 style={{ textAlign: 'center',
+                            <h1 style={{ textAlign: 'center',
                                 color: '#5F422B',
                                 marginBottom: '60px'
-                             }}>Create Your Drink</h2>
+                             }}>Create Your Drink</h1>
                             
                             <div style={{
                                 display: 'flex',
@@ -260,7 +267,12 @@ function Level({ levelNumber = 1 }) {
             case 3:
                 return (
                     <div className="decorations-page">
-                        <h2 style={{ textAlign: 'center' }}>Decorate Your Drink</h2>
+                        <h1 style={{
+                            textAlign: 'center',
+                            color: '#5F422B',
+                            marginBottom: '60px' }}>
+                                Decorate Your Drink
+                        </h1>
                         
                         <div style={{
                             display: 'flex',
@@ -273,39 +285,53 @@ function Level({ levelNumber = 1 }) {
                                 width: '300px',
                                 height: '300px',
                                 backgroundColor: '#f0f0f0',
-                                border: '1px solid #ccc',
-                                borderRadius: '8px',
+                                border: 'none',
+                                borderRadius: '20px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
-                                <p>Drink Preview</p>
+                                <img src = {'assets/game/drink/' + getDecoratedDrinkImage()}></img>
                             </div>
-            
                             {/* Decorations grid */}
                             <div style={{
                                 width: '300px',
                                 display: 'grid',
-                                gridTemplateColumns: 'repeat(2, 1fr)',
-                                gap: '15px',
+                                gridTemplateColumns: 'repeat(3, 1fr)', // Changed to 3 columns for better layout
+                                gap: '10px',
                                 alignContent: 'start'
                             }}>
-                                {['Whipped Cream', 'Chocolate Drizzle', 'Caramel Drizzle', 'Cinnamon', 'Sprinkles'].map(decoration => (
+                                {availableDecorations.map(decoration => (
                                     <button
-                                        key={decoration}
+                                        key={decoration.name}
                                         onClick={() => handleDecorationSelect(decoration)}
                                         style={{
-                                            padding: '15px 10px',
-                                            backgroundColor: decorations.includes(decoration) ? '#4CAF50' : '#e0e0e0',
+                                            aspectRatio: '1', // Makes the button square
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            padding: '10px',
+                                            backgroundColor: decorations.includes(decoration) ? '#408c75' : '#F5F5F5',
                                             border: 'none',
-                                            borderRadius: '5px',
+                                            borderRadius: '10px',
                                             cursor: 'pointer',
-                                            color: decorations.includes(decoration) ? 'white' : 'black',
+                                            color: decorations.includes(decoration) ? 'white' : '#5F422B',
                                             transition: 'all 0.3s ease',
                                             fontSize: '14px'
                                         }}
                                     >
-                                        {decoration}
+                                        <img
+                                            src={'/assets/game/decorations/' + decoration + '.png'}
+                                            width='75px'>
+                                        </img>
+                                        <span style={{ 
+                                            fontSize: '14px',
+                                            textAlign: 'center',
+                                            wordWrap: 'break-word'
+                                        }}>
+                                            {decoration}
+                                        </span>
                                     </button>
                                 ))}
                             </div>
@@ -342,14 +368,16 @@ function Level({ levelNumber = 1 }) {
                                 <div style={{
                                     width: '300px',
                                     height: '300px',
-                                    backgroundColor: '#f0f0f0',
-                                    border: '1px solid #ccc',
-                                    borderRadius: '8px',
+                                    backgroundColor: '#F5F5F5',
+                                    border: 'none',
+                                    borderRadius: '20px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}>
-                                    <p>Drink Preview</p>
+                                    <img
+                                        src = {'assets/game/drink/' + getDecoratedDrinkImage()}>
+                                    </img>
                                 </div>
             
                                 {/* Ingredients list */}
@@ -358,6 +386,7 @@ function Level({ levelNumber = 1 }) {
                                     boxSizing: 'border-box', // Include padding in width calculation
                                     padding: '20px',
                                     backgroundColor: '#f8f8f8',
+                                    border: 'none',
                                     borderRadius: '8px'
                                 }}>
                                     <h4 style={{ marginBottom: '10px' }}>Ingredients:</h4>
@@ -389,7 +418,7 @@ function Level({ levelNumber = 1 }) {
                                 flexDirection: 'column',
                                 alignItems: 'center'
                             }}>
-                                <h3 style={{ marginBottom: '30px' }}>Final Grade</h3>
+                                <h3 style={{ marginBottom: '20px' }}>Final Grade</h3>
                                 
                                 {/* Overall grade circle */}
                                 <div style={{
@@ -403,7 +432,7 @@ function Level({ levelNumber = 1 }) {
                                     color: 'white',
                                     fontSize: '24px',
                                     fontWeight: 'bold',
-                                    marginBottom: '30px'
+                                    marginBottom: '20px'
                                 }}>
                                     {score.total || '90'}%
                                 </div>
@@ -541,11 +570,12 @@ function Level({ levelNumber = 1 }) {
                         style={{
                             padding: '10px 20px',
                             cursor: currentPage === 1 || currentPage === 4 ? 'not-allowed' : 'pointer',
-                            backgroundColor: currentPage === 1 || currentPage === 4 ? '#e0e0e0' : '#71c39f',
+                            backgroundColor: currentPage === 1 || currentPage === 4 ? '#e0e0e0' : '#408c75',
                             border: 'none',
                             borderRadius: '5px',
                             color: 'white',
-                            fontSize: '16px'
+                            fontSize: '16px', 
+                            fontWeight: 'bold'
                         }}
                     >
                         Previous
@@ -557,11 +587,12 @@ function Level({ levelNumber = 1 }) {
                         style={{
                             padding: '10px 20px',
                             cursor: 'pointer',
-                            backgroundColor: currentPage === 4 ? '#408c75' : '#71c39f',
+                            backgroundColor: currentPage === 4 ? '#5F422B' : '#408c75',
                             border: 'none',
                             borderRadius: '5px',
                             color: 'white',
-                            fontSize: '16px'
+                            fontSize: '16px',
+                            fontWeight: 'bold'
                         }}
                     >
                         {currentPage === 4 ? 'Finish' : 'Next'}
