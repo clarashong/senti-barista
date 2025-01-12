@@ -7,7 +7,7 @@ function App() {
         <GameProvider>
             <div className="App" style={{
                 minHeight: '100vh',
-                backgroundColor: '#f5f5f5'
+                backgroundColor: '#dfc98a'
             }}>
                 <Level />
             </div>

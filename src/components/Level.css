@@ -1,0 +1,8 @@
+.drink-preview {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.drink-preview.fade {
+    opacity: 0;
+}
