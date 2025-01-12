@@ -113,7 +113,7 @@ function Level({ levelNumber = 1 }) {
         let numberScore = parseInt(score.total)
         if (numberScore < 40) return customer.feedback.negative[0];
         if (numberScore < 80) return customer.feedback.neutral[0]; 
-        return customer.feedback.positive[1];
+        return customer.feedback.positive[0];
     };
 
     const orderPopup = () => {
@@ -709,7 +709,7 @@ function Level({ levelNumber = 1 }) {
                 }}>
                     <button
                         onClick={previousPage}
-                        disabled={currentPage === 1}
+                        disabled={currentPage === 1 || currentPage === 4}
                         style={{
                             padding: '10px 20px',
                             cursor: currentPage === 1 || currentPage === 4 ? 'not-allowed' : 'pointer',

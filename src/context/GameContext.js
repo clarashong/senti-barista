@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { customers } from '../data/customers';
 import { levels } from '../data/levels';
-import { ingredients } from '../data/ingredients';
+import { ingredients } from '../generation/generatedIngredients';
 import { availableDecorations } from '../data/decorations';
 import { useLocation } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ export function GameProvider({ children }) {
     const [score, setScore] = useState(0);
     const [selectedIngredients, setSelectedIngredients] = useState(["","","",""]);
     const [decorations, setDecorations] = useState([]);
+    const [bonus, setBonus] = useState([])
     
     const location = useLocation();
     const levelId = location.state?.levelId;
@@ -20,6 +21,25 @@ export function GameProvider({ children }) {
     // Get current customer based on level
     const getCurrentCustomer = () => {
         return customers.find(c => c.id === levelId);
+    };
+
+    const getLikePoints = (customer) => {
+        let points = 0; 
+        selectedIngredients.forEach((ingredient) => {
+            if (ingredient) {
+                if (customer["likes"].find(i => i === ingredient)) {
+                    points += 5; 
+                    let feedback = "+ Taste + : " + customer.name+ " really likes " + ingredient; 
+                    setBonus(bonus.push(feedback));
+                }
+                if (customer["dislikes"].find(i => i === ingredient)) {
+                    points -= 7; 
+                    let feedback = "- Taste - : " + customer.name+ " really hates " + ingredient; 
+                    setBonus(bonus.push(feedback));
+                }
+            }
+        });
+        return points; 
     };
 
     // Loop through selected ingredients and check against customer preferences
@@ -47,6 +67,8 @@ export function GameProvider({ children }) {
         });
         
         let meanSquareError = totalSquareError / 5; 
+        let score = Math.max(0, Math.round(100 - Math.sqrt(meanSquareError))); 
+        score += getLikePoints(customer); 
         return Math.max(0, Math.round(100 - Math.sqrt(meanSquareError))); 
     };      
 
@@ -66,7 +88,7 @@ export function GameProvider({ children }) {
         let themeScore = 50; // neutral score
         customer.theme.forEach(ing => {
             if (selectedIngredients.includes(ing)) {
-                themeScore += 20;
+                themeScore += 25;
             }
         });
         customer.offTheme.forEach(ing => {
