@@ -20,6 +20,8 @@ function Level({ levelNumber = 1 }) {
         setSelectedIngredients,
         decorations,
         setDecorations,
+        bonus,
+        setBonus,
         getCurrentCustomer,
         calculateScore,
         availableDecorations
@@ -50,6 +52,7 @@ function Level({ levelNumber = 1 }) {
 
     const checkAnswers = () => {
         setScore(calculateScore); 
+        console.log(bonus); 
     }
 
     // Navigation functions
@@ -540,15 +543,15 @@ function Level({ levelNumber = 1 }) {
                                             color: '#5F422B' 
                                             }}>Ingredients:</h3>
                                         {selectedIngredients.map((ingredient, index) => (
-                                                <p 
-                                                    key={index} 
-                                                    style={{
-                                                    marginBottom: '0px',
-                                                    color: '#5F422B',
-                                                    fontWeight: 'bold'
-                                                }}>
-                                                    {ingredient}
-                                                </p>
+                                            <p 
+                                                key={index} 
+                                                style={{
+                                                marginBottom: '0px',
+                                                color: '#5F422B',
+                                                fontWeight: 'bold'
+                                            }}>
+                                                {ingredient}
+                                            </p>
                                         ))}
                                     </div>
                                 </div>
@@ -586,7 +589,7 @@ function Level({ levelNumber = 1 }) {
                                     fontWeight: 'bold',
                                     marginBottom: '20px'
                                 }}>
-                                    {score.total || '90'}%
+                                    {score.total}%
                                 </div>
 
                                 {/* Category grades */}

@@ -13,7 +13,7 @@ export function GameProvider({ children }) {
     const [score, setScore] = useState(0);
     const [selectedIngredients, setSelectedIngredients] = useState(["","","",""]);
     const [decorations, setDecorations] = useState([]);
-    const [bonus, setBonus] = useState([])
+    const [bonus, setBonus] = useState([]);
     
     const location = useLocation();
     const levelId = location.state?.levelId;
@@ -30,12 +30,12 @@ export function GameProvider({ children }) {
                 if (customer["likes"].find(i => i === ingredient)) {
                     points += 5; 
                     let feedback = "+ Taste + : " + customer.name+ " really likes " + ingredient; 
-                    setBonus(bonus.push(feedback));
+                    //setBonus(prevBonus => [...prevBonus, feedback])
                 }
                 if (customer["dislikes"].find(i => i === ingredient)) {
                     points -= 7; 
                     let feedback = "- Taste - : " + customer.name+ " really hates " + ingredient; 
-                    setBonus(bonus.push(feedback));
+                    //setBonus(prevBonus => [...prevBonus, feedback])
                 }
             }
         });
@@ -69,16 +69,20 @@ export function GameProvider({ children }) {
         let meanSquareError = totalSquareError / 5; 
         let score = Math.max(0, Math.round(100 - Math.sqrt(meanSquareError))); 
         score += getLikePoints(customer); 
-        return Math.max(0, Math.round(100 - Math.sqrt(meanSquareError))); 
+        return Math.max(0, score); 
     };      
 
     const getCreativityScore = (customer) => {
         let scale = 10; 
         let totalRarity = 0; 
         selectedIngredients.forEach(ingredient => {
-            ingredient = ingredients.find(i => i.name === ingredient);
             if (ingredient) {
-                totalRarity += ingredient.rarity;
+                ingredient = ingredients.find(i => i.name === ingredient.toLowerCase());
+                if (ingredient) {
+                    totalRarity += ingredient.rarity; 
+                } else {
+                    totalRarity += 5; // neutral rarity // not in database
+                }
             }
         });
         return Math.round(totalRarity * 100 / scale); // creativity score
@@ -86,16 +90,22 @@ export function GameProvider({ children }) {
 
     const getThemeScore = (customer) => {
         let themeScore = 50; // neutral score
-        customer.theme.forEach(ing => {
-            if (selectedIngredients.includes(ing)) {
-                themeScore += 25;
+        if (selectedIngredients.filter(Boolean).length === 0) return 0; 
+        selectedIngredients.forEach((ingredient) => {
+            // ingredient in database 
+            if (ingredients.find(i => i.name === ingredient.toLowerCase())) {
+                if (customer["theme"].includes(ingredient)) {
+                    themeScore += 25; 
+                    let feedback = "+ theme + : " + ingredient + "is super on-theme.";
+                    //setBonus(prevBonus => [...prevBonus, feedback])
+                }
+                if (customer["offTheme".includes(ingredient)]) {
+                    themeScore -= 15; 
+                    let feedback = "+ theme + : " + ingredient + "is off-theme.";
+                    //setBonus(prevBonus => [...prevBonus, feedback])
+                }
             }
-        });
-        customer.offTheme.forEach(ing => {
-            if (selectedIngredients.includes(ing)) {
-                themeScore -= 15;
-            }
-        });
+        })
         return themeScore;
     }
 
@@ -116,6 +126,8 @@ export function GameProvider({ children }) {
         setSelectedIngredients,
         decorations,
         setDecorations,
+        bonus,
+        setBonus,
         getCurrentCustomer,
         calculateScore,
         availableDecorations
