@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useGame } from '../context/GameContext';
 import './Level.css';
 import { useNavigate } from 'react-router-dom';
+import { getImageURL } from '../scripts/assets_S3';
 
 function Level({ levelNumber = 1 }) {
     const navigate = useNavigate(); 
@@ -159,7 +160,7 @@ function Level({ levelNumber = 1 }) {
                     overflow: 'hidden' // ensures the image stays within the circular div
                 }}>
                     <img
-                        src = {'/assets/game/customers/' + getCustomerImage()}
+                        src = {getImageURL(customer.assets.headshot)}
                         style = {{
                             width: '60px',
                             height: '60px',
@@ -219,7 +220,7 @@ function Level({ levelNumber = 1 }) {
                                 }}
                             >
                                 <img 
-                                    src={'/assets/game/customers/' + getCustomerImage()}
+                                    src={getImageURL(customer.assets.headshot)}
                                     alt="Customer headshot"
                                     className="customer-headshot"
                                     style={{
@@ -227,6 +228,9 @@ function Level({ levelNumber = 1 }) {
                                         height: '240px',
                                         borderRadius: '50%',
                                         objectFit: 'cover'
+                                    }}
+                                    onError={(e) => {
+                                        console.error('Image load error:', e);
                                     }}
                                 />
                             </div>
@@ -286,7 +290,7 @@ function Level({ levelNumber = 1 }) {
                             }}>
                                 {/* Bottom (old) image */}
                                 <img 
-                                    src={'/assets/game/drink/' + currentImage}
+                                    src={getImageURL('assets/game/drink/' + currentImage)}
                                     alt="Current Drink"
                                     style={{
                                         position: 'absolute',
@@ -297,7 +301,7 @@ function Level({ levelNumber = 1 }) {
                                 />
                                 {/* Top (new) image */}
                                 <img 
-                                    src={'/assets/game/drink/' + nextImage}
+                                    src={getImageURL('assets/game/drink/' + nextImage)}
                                     alt="Next Drink"
                                     style={{
                                         position: 'absolute',
@@ -366,7 +370,7 @@ function Level({ levelNumber = 1 }) {
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
-                                <img src = {'assets/game/drink/' + getDecoratedDrinkImage()}></img>
+                                <img src = {getImageURL('assets/game/drink/' + getDecoratedDrinkImage())}></img>
                             </div>
                             {/* Decorations grid */}
                             <div style={{
@@ -398,7 +402,7 @@ function Level({ levelNumber = 1 }) {
                                     >
                                         <img
                                             key={decoration}
-                                            src={'/assets/game/decorations/' + decoration + '.png'}
+                                            src={getImageURL('assets/game/decorations/' + decoration + '.png')}
                                             width='75px'>
                                         </img>
                                         <span style={{ 
@@ -452,7 +456,7 @@ function Level({ levelNumber = 1 }) {
                                 }}
                             >
                                 <img 
-                                    src={'/assets/game/customers/' + getCustomerImage()}
+                                    src={getImageURL(customer.assets.headshot)}
                                     alt="Customer headshot"
                                     className="customer-headshot"
                                     style={{

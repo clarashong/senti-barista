@@ -63,7 +63,7 @@ export const customers = [
           ]
       },
       "assets": {
-          "headshot": "/assets/game/customers/timmy.png"
+          "headshot": "assets/game/customers/timmy.png"
       }
   },
   {

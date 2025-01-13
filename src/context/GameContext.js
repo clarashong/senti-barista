@@ -81,11 +81,11 @@ export function GameProvider({ children }) {
                 if (ingredient) {
                     totalRarity += ingredient.rarity; 
                 } else {
-                    totalRarity += 5; // neutral rarity // not in database
+                    totalRarity += 10; // neutral-low rarity // not in database
                 }
             }
         });
-        return Math.round(totalRarity * 100 / scale); // creativity score
+        return Math.min(100, Math.round(totalRarity * 100 / scale)); // creativity score
     }; 
 
     const getThemeScore = (customer) => {
