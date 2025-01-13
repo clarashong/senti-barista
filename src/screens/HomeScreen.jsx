@@ -13,7 +13,7 @@ function HomeScreen() {
       {!showLevelSelect ? (
         // First Page
         <div className="content top-left">
-          <h1 className="game-title">Senti Barista</h1>
+          <h1 className="game-title">Senti-Barista</h1>
           <div className="button-container">
             <button 
               className="game-button play-button"

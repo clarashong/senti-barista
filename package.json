@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.716.0",
+    "@aws-sdk/client-dynamodb": "^3.726.1",
+    "@aws-sdk/lib-dynamodb": "^3.726.1",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
