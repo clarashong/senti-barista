@@ -11,6 +11,7 @@
     flex-direction: column;
     overflow: hidden;
     background-color: antiquewhite;
+    background-image: url("../../public/assets/backgrounds/bg_levels.png");
 }
 
 .header {
@@ -75,7 +76,7 @@
 }
   
 .carousel-button:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: not-allowed;
 }
   

@@ -137,7 +137,10 @@ export function GameProvider({ children }) {
         <GameContext.Provider value={value}>
             <div className="App" style={{
                 minHeight: '100vh',
-                backgroundColor: '#dfc98a'
+                backgroundColor: '#dfc98a',
+                backgroundImage: `url('/assets/backgrounds/bg_levels.png')`,
+                backgroundSize: 'cover',
+                backgroundAttachment: 'fixed'
             }}>
                 {children}
             </div>
