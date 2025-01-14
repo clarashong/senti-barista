@@ -86,7 +86,7 @@ export function GameProvider({ children }) {
     };      
 
     const getCreativityScore = (customer) => {
-        let scale = 10; 
+        let scale = 13; 
         let totalRarity = 0; 
         selectedIngredients.forEach(ingredient => {
             if (ingredient) {
@@ -94,7 +94,7 @@ export function GameProvider({ children }) {
                 if (ingredient) {
                     totalRarity += ingredient.rarity; 
                 } else {
-                    totalRarity += 10; // neutral-low rarity // not in database
+                    totalRarity += 5; // neutral-low rarity // not in database
                 }
             }
         });
@@ -107,12 +107,12 @@ export function GameProvider({ children }) {
         selectedIngredients.forEach((ingredient) => {
             // ingredient in database 
             if (ingredientDataResponse.found.find(i => i.name === ingredient.toLowerCase())) {
-                if (customer["theme"].includes(ingredient)) {
+                if (customer["theme"].includes(ingredient.toLowerCase())) {
                     themeScore += 25; 
                     let feedback = "+ theme + : " + ingredient + "is super on-theme.";
                     //setBonus(prevBonus => [...prevBonus, feedback])
                 }
-                if (customer["offTheme".includes(ingredient)]) {
+                if (customer["offTheme".includes(ingredient.toLowerCase())]) {
                     themeScore -= 15; 
                     let feedback = "+ theme + : " + ingredient + "is off-theme.";
                     //setBonus(prevBonus => [...prevBonus, feedback])
@@ -125,7 +125,8 @@ export function GameProvider({ children }) {
     // Calculate score based on ingredients and decorations
     const calculateScore = async () => {
         const customer = await getCurrentCustomer();
-        const response = await getMultipleIngredients(selectedIngredients);
+        const ingredientList = selectedIngredients.map(name => name.toLowerCase());
+        const response = await getMultipleIngredients(ingredientList);
         if (!response || !response.found) {
             return { creativity: 0, taste: 0, theme: 0, total: 0 };
         }
