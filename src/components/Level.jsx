@@ -576,7 +576,7 @@ function Level({ levelNumber = 1 }) {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    backgroundImage: `url(${getImageURL('assets/game/drink/drink_duck.png')})`,
+                                    backgroundImage: `url(${getImageURL('assets/game/drink/' + getDecoratedDrinkImage())})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'
@@ -746,7 +746,20 @@ function Level({ levelNumber = 1 }) {
                 {renderPage()}
             </div>
 
-            <div style={fixedBottomStyle}>
+            <div style={{
+                position: 'fixed',
+                bottom: 0,
+                marginBottom: '1%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '60%',
+                zIndex: 1000,
+                // Optional additional properties you might want:
+                borderRadius: '20px',
+                padding: '20px',
+                backgroundColor: '#fff', // Add background color if needed
+                boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)', // Add shadow if needed 
+                }}>
                 {/* Progress bar */}
                 <div className="progress-bar" style={{
                     width: '100%',
