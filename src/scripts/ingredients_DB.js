@@ -3,7 +3,6 @@ import {
     DynamoDBDocumentClient, 
     BatchWriteCommand, 
     ScanCommand,
-    GetItemCommand,
     BatchGetCommand 
 } from "@aws-sdk/lib-dynamodb";
 import { ingredients } from '../generation/generatedIngredients';
@@ -192,7 +191,7 @@ export async function getMultipleIngredients(ingredientNames) {
 
     const params = {
         RequestItems: {
-            [process.env.DYNAMO_INGREDIENTS_TABLE || 'Ingredients']: {
+            ['Ingredients']: {
                 Keys: keys
             }
         }
@@ -203,7 +202,7 @@ export async function getMultipleIngredients(ingredientNames) {
         const response = await docClient.send(command);
         
         // Get the results for your table
-        const results = response.Responses[process.env.DYNAMO_INGREDIENTS_TABLE || 'Ingredients'];
+        const results = response.Responses['Ingredients'];
         
         // Find missing ingredients by comparing requested vs received
         const foundNames = results.map(item => item.name);

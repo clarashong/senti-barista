@@ -576,7 +576,7 @@ function Level({ levelNumber = 1 }) {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    backgroundImage: `url('/assets/game/drink/drink_dandelion.png')`,
+                                    backgroundImage: `url('/assets/game/drink/drink_${decorations[0]}.png')`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'
