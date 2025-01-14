@@ -219,7 +219,6 @@ export async function getMultipleIngredients(ingredientNames) {
             //     missingNames.map(name => ingredientNames[requestedIds.indexOf(name)])
             // );
         }
-        console.log(results); 
         return {
             found: results,
             missing: missingNames.map(name => ingredientNames[requestedIds.indexOf(name)]),
@@ -228,12 +227,12 @@ export async function getMultipleIngredients(ingredientNames) {
             missingCount: missingNames.length
         };
     } catch (error) {
-        console.log('Error details:', {
-            message: error.message,
-            name: error.name,
-            code: error.$metadata?.httpStatusCode,
-            requestId: error.$metadata?.requestId
-        });
+        // console.log('Error details:', {
+        //     message: error.message,
+        //     name: error.name,
+        //     code: error.$metadata?.httpStatusCode,
+        //     requestId: error.$metadata?.requestId
+        // });
     }
 }
 

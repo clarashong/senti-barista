@@ -1,7 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { customers } from '../data/customers';
-import { levels } from '../data/levels';
-import { ingredients } from '../generation/generatedIngredients';
 import { availableDecorations } from '../data/decorations';
 import { useLocation } from 'react-router-dom';
 import { getMultipleIngredients } from '../scripts/ingredients_DB';
@@ -87,7 +85,6 @@ export function GameProvider({ children }) {
         let totalRarity = 0; 
         selectedIngredients.forEach(ingredient => {
             if (ingredient) {
-                console.log(ingredientDataResponse.found)
                 ingredient = ingredientDataResponse.found.find(i => i.name === ingredient.toLowerCase());
                 if (ingredient) {
                     totalRarity += ingredient.rarity; 
@@ -124,7 +121,6 @@ export function GameProvider({ children }) {
     const calculateScore = async () => {
         const customer = getCurrentCustomer();
         const response = await getMultipleIngredients(selectedIngredients);
-        console.log(response);
         if (!response || !response.found) {
             return { creativity: 0, taste: 0, theme: 0, total: 0 };
         }
