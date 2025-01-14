@@ -10,7 +10,6 @@ function LevelSelect() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleCardClick = (levelId) => {
-    console.log(levelId); 
     navigate('/game', {
         state: { levelId: levelId}
     });

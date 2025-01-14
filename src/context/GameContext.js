@@ -3,6 +3,7 @@ import { customers } from '../data/customers';
 import { availableDecorations } from '../data/decorations';
 import { useLocation } from 'react-router-dom';
 import { getMultipleIngredients } from '../scripts/ingredients_DB';
+import { getCustomerByDate } from '../scripts/daily_DB';
 
 const GameContext = createContext();
 
@@ -26,7 +27,12 @@ export function GameProvider({ children }) {
     };
     
     // Get current customer based on level
-    const getCurrentCustomer = () => {
+    const getCurrentCustomer = async () => {
+        console.log(levelId); 
+        if (levelId === "daily") {
+            const currentCustomer = await getCustomerByDate(); 
+            return currentCustomer[0];
+        }
         return customers.find(c => c.id === levelId);
     };
 
@@ -119,7 +125,7 @@ export function GameProvider({ children }) {
 
     // Calculate score based on ingredients and decorations
     const calculateScore = async () => {
-        const customer = getCurrentCustomer();
+        const customer = await getCurrentCustomer();
         const response = await getMultipleIngredients(selectedIngredients);
         if (!response || !response.found) {
             return { creativity: 0, taste: 0, theme: 0, total: 0 };

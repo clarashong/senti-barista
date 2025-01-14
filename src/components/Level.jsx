@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useGame } from '../context/GameContext';
 import './Level.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getImageURL } from '../scripts/assets_S3';
 
 function Level({ levelNumber = 1 }) {
     const navigate = useNavigate(); 
-    const handleFinish = () => {
-        navigate('/levelselect');  // Navigate to level selection page
-    };
-
+    const location = useLocation(); 
     const [currentPage, setCurrentPage] = useState(1);
     const [score, setScore] = useState({ creativity: 0, taste: 0, theme: 0, total: 0 });
+    const [customer, setCustomer] = useState(null); 
     const [isLoading, setIsLoading] = useState(false); 
-    
+    const [loading, setLoading] = useState(true);
     const {
         currentLevel,
         setCurrentLevel,
@@ -27,19 +25,68 @@ function Level({ levelNumber = 1 }) {
         calculateScore,
         availableDecorations
     } = useGame();
-    const customer = getCurrentCustomer(); 
+    const isDaily = location.state?.levelId === "daily";
+    
+    useEffect(() => {
+        const initializeLevel = async () => {
+            try {
+                setLoading(true);
+                let customerData;
+                
+                if (isDaily) {
+                    customerData = await getCurrentCustomer(); // Your function to get daily customer
+                } else {
+                    customerData = await getCurrentCustomer(); // Your regular level customer fetch
+                }
+                
+                if (!customerData) {
+                    throw new Error('No customer data received');
+                }
+                
+                setCustomer(customerData);
+            } catch (error) {
+                console.error('Error loading customer:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        initializeLevel();
+    }, [location.state?.levelId, isDaily]);
+    
+    
+    // Add this useEffect to handle the image transitions
+    useEffect(() => {
+        const newImage = getDrinkImage(selectedIngredients);
+        if (newImage !== currentImage) {
+            setNextImage(newImage);
+            setIsTransitioning(true);
+            
+            const timer = setTimeout(() => {
+                setCurrentImage(newImage);
+                setIsTransitioning(false);
+            }, 500); // Match this duration with CSS transition
+            
+            return () => clearTimeout(timer);
+        }
+    }, [selectedIngredients]);
+    
+    const handleFinish = () => {
+        navigate('/levelselect');  // Navigate to level selection page
+    };
+    
     // Handle ingredient change
     const handleIngredientChange = (index, value) => {
         const newIngredients = [...selectedIngredients];
         newIngredients[index] = value;
         setSelectedIngredients(newIngredients);
     };
-
+    
     // Check if all ingredients are filled
     const areAllIngredientsFilled = () => {
         return selectedIngredients.every(ingredient => ingredient.trim() !== '');
     };
-
+    
     const handleDecorationSelect = (decoration) => {
         setDecorations(prevDecorations => {
             if (prevDecorations.includes(decoration)) {
@@ -50,12 +97,12 @@ function Level({ levelNumber = 1 }) {
         });
     };
     
-
+    
     const checkAnswers = async () => {
         const newScore = await calculateScore(); 
         setScore(newScore); 
     }
-
+    
     // Navigation functions
     const nextPage = async () => {
         if (currentPage < 3) {
@@ -82,13 +129,13 @@ function Level({ levelNumber = 1 }) {
             handleFinish(); 
         }
     };
-
+    
     const previousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
-
+    
     const getDrinkImage = (ingredients) => {
         const filledCount = selectedIngredients.filter(str => str.trim() !== '').length; // count filled strings
         if (filledCount < 0 || filledCount > 4) {
@@ -101,39 +148,23 @@ function Level({ levelNumber = 1 }) {
     const [currentImage, setCurrentImage] = useState(getDrinkImage(selectedIngredients));
     const [nextImage, setNextImage] = useState(getDrinkImage(selectedIngredients));
     const [isTransitioning, setIsTransitioning] = useState(false);
-
-    // Add this useEffect to handle the image transitions
-    useEffect(() => {
-        const newImage = getDrinkImage(selectedIngredients);
-        if (newImage !== currentImage) {
-            setNextImage(newImage);
-            setIsTransitioning(true);
-            
-            const timer = setTimeout(() => {
-                setCurrentImage(newImage);
-                setIsTransitioning(false);
-            }, 500); // Match this duration with CSS transition
-            
-            return () => clearTimeout(timer);
-        }
-    }, [selectedIngredients]);
     
     const getDecoratedDrinkImage = () => {
         if (decorations.length == 0) return 'drink_4.png'; 
         return 'drink_' + decorations[0] + '.png';
     };
-
+    
     const getCustomerImage = () => {
         return customer.name.toLowerCase() + '.png';
     }
-
+    
     const getFeedback = () => {
         let numberScore = parseInt(score.total)
         if (numberScore < 40) return customer.feedback.negative[0];
         if (numberScore < 80) return customer.feedback.neutral[0]; 
         return customer.feedback.positive[0];
     };
-
+    
     const orderPopup = () => {
         return (
             <div style={{
@@ -185,9 +216,11 @@ function Level({ levelNumber = 1 }) {
             </div>
         );
     };    
-
+    
     // Render different pages based on currentPage
     const renderPage = () => {
+        if (!customer) {return <div>Loading...</div>;}
+
         switch (currentPage) {
             // In the renderPage function, modify case 1:
             case 1:

@@ -4,7 +4,9 @@ import { GameProvider } from './context/GameContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import LevelSelect from './screens/LevelSelect';
+import { getCustomerByDate } from './scripts/daily_DB';
 
+await getCustomerByDate(); 
 function App() {
   return (
     <BrowserRouter>

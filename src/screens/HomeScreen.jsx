@@ -6,7 +6,7 @@ import './HomeScreen.css';
 function HomeScreen() {
   const navigate = useNavigate();
   const [showLevelSelect, setShowLevelSelect] = useState(false);
-
+  
   return (
     <div className="home-container"
         style={{backgroundImage: `url('/assets/backgrounds/bg_home.png')`}}>
@@ -42,7 +42,9 @@ function HomeScreen() {
               <p>Play through different levels</p>
             </div>
 
-            <div className="game-mode-card" onClick={() => navigate('/daily')}>
+            <div className="game-mode-card" onClick={() => navigate('/game', {
+                state: { levelId: "daily"}
+            })}>
               <h3>Daily Challenge</h3>
               <p>New challenge every day</p>
             </div>
