@@ -4,6 +4,7 @@ import { levels } from '../data/levels';
 import { ingredients } from '../generation/generatedIngredients';
 import { availableDecorations } from '../data/decorations';
 import { useLocation } from 'react-router-dom';
+import { getMultipleIngredients } from '../scripts/ingredients_DB';
 
 const GameContext = createContext();
 
@@ -17,6 +18,14 @@ export function GameProvider({ children }) {
     
     const location = useLocation();
     const levelId = location.state?.levelId;
+
+    let ingredientDataResponse = {
+        found: [],
+        missing: [],
+        total: 0,
+        foundCount: 0,
+        missingCount: 0
+    };
     
     // Get current customer based on level
     const getCurrentCustomer = () => {
@@ -44,12 +53,13 @@ export function GameProvider({ children }) {
 
     // Loop through selected ingredients and check against customer preferences
     const getTasteScore = (customer) => {
+        if (!customer || !selectedIngredients || !ingredientDataResponse?.found) return 0;
+
         let tasteScore = 0;
-    
         let distribution = {sweetness: 0, saltiness: 0, sourness: 0, bitterness: 0, umami: 0}
         // get the distribution of ingredients 
         selectedIngredients.forEach((ingredient) => {
-            ingredient = ingredients.find(i => i.name === ingredient);
+            ingredient = ingredientDataResponse.found.find(i => i.name === ingredient.toLowerCase());
             if (ingredient) {
                 distribution.sweetness += ingredient.sweetness;
                 distribution.saltiness += ingredient.saltiness;
@@ -77,7 +87,8 @@ export function GameProvider({ children }) {
         let totalRarity = 0; 
         selectedIngredients.forEach(ingredient => {
             if (ingredient) {
-                ingredient = ingredients.find(i => i.name === ingredient.toLowerCase());
+                console.log(ingredientDataResponse.found)
+                ingredient = ingredientDataResponse.found.find(i => i.name === ingredient.toLowerCase());
                 if (ingredient) {
                     totalRarity += ingredient.rarity; 
                 } else {
@@ -93,7 +104,7 @@ export function GameProvider({ children }) {
         if (selectedIngredients.filter(Boolean).length === 0) return 0; 
         selectedIngredients.forEach((ingredient) => {
             // ingredient in database 
-            if (ingredients.find(i => i.name === ingredient.toLowerCase())) {
+            if (ingredientDataResponse.found.find(i => i.name === ingredient.toLowerCase())) {
                 if (customer["theme"].includes(ingredient)) {
                     themeScore += 25; 
                     let feedback = "+ theme + : " + ingredient + "is super on-theme.";
@@ -110,8 +121,14 @@ export function GameProvider({ children }) {
     }
 
     // Calculate score based on ingredients and decorations
-    const calculateScore = () => {
+    const calculateScore = async () => {
         const customer = getCurrentCustomer();
+        const response = await getMultipleIngredients(selectedIngredients);
+        console.log(response);
+        if (!response || !response.found) {
+            return { creativity: 0, taste: 0, theme: 0, total: 0 };
+        }
+        ingredientDataResponse = response; 
         let score = {creativity: getCreativityScore(customer), taste: getTasteScore(customer), theme: getThemeScore(customer)};
         score.total = Math.round((score.creativity + score.taste + score.theme) / 3);
         return score; 

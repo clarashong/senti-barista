@@ -7,12 +7,12 @@ import { getImageURL } from '../scripts/assets_S3';
 function Level({ levelNumber = 1 }) {
     const navigate = useNavigate(); 
     const handleFinish = () => {
-        console.log("navigating")
         navigate('/levelselect');  // Navigate to level selection page
     };
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [score, setScore] = useState(null);
+    const [score, setScore] = useState({ creativity: 0, taste: 0, theme: 0, total: 0 });
+    const [isLoading, setIsLoading] = useState(false); 
     
     const {
         currentLevel,
@@ -40,20 +40,7 @@ function Level({ levelNumber = 1 }) {
         return selectedIngredients.every(ingredient => ingredient.trim() !== '');
     };
 
-    // Handle decoration selection
-    // const handleDecorationSelect = (decoration) => {
-    //     console.log(decoration)
-    //     if (decorations.includes(decoration)) {
-    //         // Remove decoration if already selected
-    //         setDecorations([]);
-    //     } else {
-    //         // Replace any existing decoration with the new one
-    //         setDecorations([decoration]);
-    //     }
-    // };
-
     const handleDecorationSelect = (decoration) => {
-        console.log(decoration);
         setDecorations(prevDecorations => {
             if (prevDecorations.includes(decoration)) {
                 return [];
@@ -64,18 +51,32 @@ function Level({ levelNumber = 1 }) {
     };
     
 
-    const checkAnswers = () => {
-        setScore(calculateScore); 
-        console.log(bonus); 
+    const checkAnswers = async () => {
+        const newScore = await calculateScore(); 
+        setScore(newScore); 
     }
 
     // Navigation functions
-    const nextPage = () => {
-        if (currentPage < 4) {
+    const nextPage = async () => {
+        if (currentPage < 3) {
             setCurrentPage(currentPage + 1);
         }
         if (currentPage === 3) {
-            checkAnswers();
+            setIsLoading(true); 
+            try {
+                // First calculate the score
+                const newScore = await calculateScore();
+                setScore(newScore);
+                // Then wait 1 second
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                // Finally, move to next page
+                setCurrentPage(4);
+            } catch (error) {
+                console.error('Error calculating score:', error);
+            } finally {
+                setIsLoading(false);
+                setCurrentPage(4);
+            }
         }
         if (currentPage === 4) {
             handleFinish(); 
@@ -752,11 +753,13 @@ function Level({ levelNumber = 1 }) {
                         Previous
                     </button>
 
-                    <button
+                    <
+                        button
                         onClick={nextPage}
+                        disabled={isLoading}
                         style={{
                             padding: '10px 20px',
-                            cursor: 'pointer',
+                            cursor: isLoading ? 'wait' : 'pointer',
                             backgroundColor: currentPage === 4 ? '#5F422B' : '#408c75',
                             border: 'none',
                             borderRadius: '5px',
@@ -765,7 +768,7 @@ function Level({ levelNumber = 1 }) {
                             fontWeight: 'bold'
                         }}
                     >
-                        {currentPage === 4 ? 'Finish' : 'Next'}
+                        {(currentPage !== 4) ? 'Next' : 'Finish'}
                     </button>
                 </div>
             </div>

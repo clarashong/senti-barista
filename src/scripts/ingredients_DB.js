@@ -2,7 +2,9 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { 
     DynamoDBDocumentClient, 
     BatchWriteCommand, 
-    ScanCommand 
+    ScanCommand,
+    GetItemCommand,
+    BatchGetCommand 
 } from "@aws-sdk/lib-dynamodb";
 import { ingredients } from '../generation/generatedIngredients';
 
@@ -20,7 +22,7 @@ const TABLE_NAME = process.env.DYNAMO_INGREDIENTS_TABLE || 'Ingredients';
 const validateEnvVars = () => {
     for (const envVar of requiredEnvVars) {
         if (!process.env[envVar]) {
-            throw new Error(`Missing required environment variable: ${envVar}`);
+            console.log(`Missing required environment variable: ${envVar}`);
         }
     }
 };
@@ -183,5 +185,56 @@ async function handleUpload() {
     }
 }
 
+export async function getMultipleIngredients(ingredientNames) {
+    // Convert all ingredient names to lowercase for consistency
+    const requestedIds = ingredientNames.map(name => name.toLowerCase());
+    const keys = requestedIds.filter(Boolean).map(name => ({ name }));  
+
+    const params = {
+        RequestItems: {
+            [process.env.DYNAMO_INGREDIENTS_TABLE || 'Ingredients']: {
+                Keys: keys
+            }
+        }
+    };
+
+    try {
+        const command = new BatchGetCommand(params);
+        const response = await docClient.send(command);
+        
+        // Get the results for your table
+        const results = response.Responses[process.env.DYNAMO_INGREDIENTS_TABLE || 'Ingredients'];
+        
+        // Find missing ingredients by comparing requested vs received
+        const foundNames = results.map(item => item.name);
+        const missingNames = requestedIds.filter(name => !foundNames.includes(name));
+        
+        // Handle any unprocessed keys
+        if (response.UnprocessedKeys && Object.keys(response.UnprocessedKeys).length > 0) {
+            console.warn('Some items were not processed:', response.UnprocessedKeys);
+        }
+
+        if (missingNames.length > 0) {
+            // console.log('Some ingredients were not found:', 
+            //     missingNames.map(name => ingredientNames[requestedIds.indexOf(name)])
+            // );
+        }
+        console.log(results); 
+        return {
+            found: results,
+            missing: missingNames.map(name => ingredientNames[requestedIds.indexOf(name)]),
+            total: ingredientNames.length,
+            foundCount: results.length,
+            missingCount: missingNames.length
+        };
+    } catch (error) {
+        console.log('Error details:', {
+            message: error.message,
+            name: error.name,
+            code: error.$metadata?.httpStatusCode,
+            requestId: error.$metadata?.requestId
+        });
+    }
+}
 
 export { uploadIngredients };
