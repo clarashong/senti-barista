@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './LevelSelect.css';
 import { customers } from '../data/customers';
+import { getImageURL } from '../scripts/assets_S3';
 
 function LevelSelect() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function LevelSelect() {
                   <h2>Level {level.id}</h2>
                   <div className="customer-image-container">
                     <img 
-                      src={level.assets.headshot} 
+                      src={(getImageURL(level.assets.headshot))} 
                       alt={level.name}
                       className="customer-image"
                     />

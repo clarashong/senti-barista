@@ -41,15 +41,28 @@ function Level({ levelNumber = 1 }) {
     };
 
     // Handle decoration selection
+    // const handleDecorationSelect = (decoration) => {
+    //     console.log(decoration)
+    //     if (decorations.includes(decoration)) {
+    //         // Remove decoration if already selected
+    //         setDecorations([]);
+    //     } else {
+    //         // Replace any existing decoration with the new one
+    //         setDecorations([decoration]);
+    //     }
+    // };
+
     const handleDecorationSelect = (decoration) => {
-        if (decorations.includes(decoration)) {
-            // Remove decoration if already selected
-            setDecorations([]);
-        } else {
-            // Replace any existing decoration with the new one
-            setDecorations([decoration]);
-        }
+        console.log(decoration);
+        setDecorations(prevDecorations => {
+            if (prevDecorations.includes(decoration)) {
+                return [];
+            } else {
+                return [decoration];
+            }
+        });
     };
+    
 
     const checkAnswers = () => {
         setScore(calculateScore); 
@@ -271,9 +284,12 @@ function Level({ levelNumber = 1 }) {
                     <div className="ingredients-page">
                         <h1 style={{ textAlign: 'center',
                             color: '#5F422B',
-                            marginBottom: '60px'
+                            marginBottom: '20px'
                             }}>Create Your Drink</h1>
                         {orderPopup()}
+                        <h3 style={{textAlign: 'center',
+                                    color: '#5F422B'
+                        }}>Pick ingredients that best fit the order and the customer!</h3>
                         <div style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -348,11 +364,14 @@ function Level({ levelNumber = 1 }) {
                         <h1 style={{
                             textAlign: 'center',
                             color: '#5F422B',
-                            marginBottom: '60px' }}>
+                            marginBottom: '20px' }}>
                                 Decorate Your Drink
                         </h1>
                         {orderPopup()}
-
+                        <h3 style={{
+                            textAlign: 'center',
+                            color: '#5F422B',
+                        }}>Make it look pretty!</h3>
                         <div style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -685,7 +704,9 @@ function Level({ levelNumber = 1 }) {
         <div style={{ 
             padding: '20px',
             margin: '0 auto',
-            position: 'relative'
+            position: 'relative',
+            height: '100%',
+            
         }}>
             <div style={contentStyle}>
                 {renderPage()}

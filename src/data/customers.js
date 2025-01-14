@@ -50,7 +50,7 @@ export const customers = [
           "wasabi",
           "soy sauce"
       ],
-      "decoration": [],
+      "decoration": ["duck"],
       "feedback": {
           "positive": [
               "Yay! This is the best drink ever!"
@@ -117,7 +117,7 @@ export const customers = [
           "chocolate",
           "dairy"
       ],
-      "decoration": [],
+      "decoration": ["lemon"],
       "feedback": {
           "positive": [
               "I absolutely love the flavors in this drink! It's like a tropical vacation in a glass."
@@ -130,7 +130,7 @@ export const customers = [
           ]
       },
       "assets": {
-          "headshot": "/assets/game/customers/june.png"
+          "headshot": "assets/game/customers/june.png"
       }
   },
   {
@@ -184,7 +184,7 @@ export const customers = [
           "metal",
           "concrete"
       ],
-      "decoration": [],
+      "decoration": ["dandelion"],
       "feedback": {
           "positive": [
               "This drink is a delightful reminder of carefree summer days spent in nature. It's like a refreshing breeze on a warm afternoon."
@@ -197,7 +197,7 @@ export const customers = [
           ]
       },
       "assets": {
-          "headshot": "/assets/game/customers/quentin.png"
+          "headshot": "assets/game/customers/quentin.png"
       }
   },
   {
@@ -264,7 +264,7 @@ export const customers = [
           ]
       },
       "assets": {
-          "headshot": "/assets/game/customers/silas.png"
+          "headshot": "assets/game/customers/silas.png"
       }
   },
   {
@@ -318,7 +318,7 @@ export const customers = [
           "lemon",
           "lime"
       ],
-      "decoration": [],
+      "decoration": ["twirly_straw"],
       "feedback": {
           "positive": [
               "This drink is truly out of this world! It's like sipping on the stars themselves.",
@@ -334,7 +334,7 @@ export const customers = [
           ]
       },
       "assets": {
-          "headshot": "/assets/game/customers/astro.png"
+          "headshot": "assets/game/customers/astro.png"
       }
   }
 ];
