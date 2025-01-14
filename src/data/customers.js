@@ -41,7 +41,12 @@ export const customers = [
           "licorice laces",
           "candy canes",
           "gingerbread",
-          "peppermint patties"
+          "peppermint patties",
+          "mango",
+          "apple juice",
+          "edible glitter",
+          "ice cream",
+          "cotton candy"
       ],
       "offTheme": [
           "matcha powder",
@@ -108,7 +113,12 @@ export const customers = [
           "cucumber",
           "ginger",
           "coconut",
-          "lemongrass"
+          "lemongrass", 
+          "lime",
+          "mint",
+          "cucumber",
+          "club soda",
+          "watermelon"
       ],
       "offTheme": [
           "nuts",
@@ -175,7 +185,12 @@ export const customers = [
           "fresh air",
           "dew drops",
           "pine needles",
-          "moss"
+          "moss",
+          "strawberries",
+          "watermelon",
+          "basil",
+          "lemon balm",
+          "raspberries"
       ],
       "offTheme": [
           "asphalt",
@@ -242,7 +257,11 @@ export const customers = [
           "elderflower",
           "nettle leaves",
           "dandelion greens",
-          "acorns"
+          "acorns",
+          "mushrooms",
+          "rosemary",
+          "fresh rosemary",
+          "grapefruit"
       ],
       "offTheme": [
           "tropical fruits",
@@ -309,7 +328,11 @@ export const customers = [
           "lavender",
           "vanilla",
           "dark chocolate",
-          "coconut"
+          "coconut",
+          "edible glitter",
+          "mint",
+          "club soda",
+          "lavender syrup"
       ],
       "offTheme": [
           "orange",
