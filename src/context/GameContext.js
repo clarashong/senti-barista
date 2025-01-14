@@ -69,7 +69,7 @@ export function GameProvider({ children }) {
         let meanSquareError = totalSquareError / 5; 
         let score = Math.max(0, Math.round(100 - Math.sqrt(meanSquareError))); 
         score += getLikePoints(customer); 
-        return Math.max(0, score); 
+        return Math.min(Math.max(0, score), 100); 
     };      
 
     const getCreativityScore = (customer) => {
@@ -106,7 +106,7 @@ export function GameProvider({ children }) {
                 }
             }
         })
-        return themeScore;
+        return Math.min(100, themeScore);
     }
 
     // Calculate score based on ingredients and decorations
