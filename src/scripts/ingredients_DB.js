@@ -187,7 +187,8 @@ async function handleUpload() {
 export async function getMultipleIngredients(ingredientNames) {
     // Convert all ingredient names to lowercase for consistency
     const requestedIds = ingredientNames.map(name => name.toLowerCase());
-    const keys = requestedIds.filter(name => (name !== "")).map(name => ({ name }));  
+    const uniqueIds = [... new Set(requestedIds)]
+    const keys = uniqueIds.filter(name => (name !== "")).map(name => ({ name }));  
 
     const params = {
         RequestItems: {
