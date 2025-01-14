@@ -28,7 +28,6 @@ export function GameProvider({ children }) {
     
     // Get current customer based on level
     const getCurrentCustomer = async () => {
-        console.log(levelId); 
         if (levelId === "daily") {
             const currentCustomer = await getCustomerByDate(); 
             return currentCustomer[0];

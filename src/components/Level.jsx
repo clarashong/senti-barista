@@ -233,7 +233,7 @@ function Level({ levelNumber = 1 }) {
                             color: '#5F422B',
                             fontWeight: 800
                         }}>
-                            Level {levelNumber}
+                            {isDaily ? `Daily Level` : `Level {levelNumber}`}
                         </h1>
 
                         {/* 2. Customer name's order */}
