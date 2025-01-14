@@ -26,6 +26,7 @@ function Level({ levelNumber = 1 }) {
         availableDecorations
     } = useGame();
     const isDaily = location.state?.levelId === "daily";
+    levelNumber = location.state?.levelId; 
     
     useEffect(() => {
         const initializeLevel = async () => {
