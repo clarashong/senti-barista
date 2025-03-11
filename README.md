@@ -1,5 +1,9 @@
 # Senti-barista
-Work in progress. Not accepting contributions. 
+By: Clara Hong (clarashong)
+
+Senti-barista is a game created for the AWS Game Builder Challenge. Read more about the project on Devpost: [Senti-Barista | Devpost](https://devpost.com/software/senti-barista?ref_content=my-projects-tab&ref_feature=my_projects)
+
+Not accepting contributions. 
 
 # Getting Started with Create React App
 
